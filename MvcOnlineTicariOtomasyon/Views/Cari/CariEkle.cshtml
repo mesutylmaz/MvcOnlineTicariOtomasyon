@@ -1,0 +1,30 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Cari
+@{
+    ViewBag.Title = "CariEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Cari Ekleme Sayfası</h2>
+<br />
+
+<form class="form-group" method="post">
+    Cari Adı
+    @Html.TextBoxFor(x => x.CariAdi, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariAdi, "", new { @style = "color:red" }) @*Cari Class'ında Validation Kuralları ve Hata mesajlarını yazıp Controllerde                                                                             ModelState.ISvalid yapısını tanımlamadan bu mesaj kullanılamıyor.*@
+    <br />
+    Cari Soyadı
+    @Html.TextBoxFor(x => x.CariSoyadi, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSoyadi, "", new { @style = "color:red" })
+    <br />
+    Cari Maili
+    @Html.TextBoxFor(x => x.CariMaili, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariMaili, "", new { @style = "color:red" })
+    <br />
+    Cari Şehri
+    @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+    <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Personel Listesi</a>
+</form>

@@ -1,0 +1,35 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Cari
+@{
+    ViewBag.Title = "CariGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Cari Güncelleme Sayfası</h2>
+<br />
+
+@using (Html.BeginForm("CariGuncelle", "Cari", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.CariID)
+        Cari Adı
+        @Html.TextBoxFor(z => z.CariAdi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariAdi, "", new { @style = "color:red" })
+        <br />
+        Cari Soyadı
+        @Html.TextBoxFor(z => z.CariSoyadi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariSoyadi, "", new { @style = "color:red" })
+        <br />
+        Cari Maili
+        @Html.TextBoxFor(z => z.CariMaili, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariMaili, "", new { @style = "color:red" })
+        <br />
+        Cari Şehri
+        @Html.TextBoxFor(z => z.CariSehir, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
+        <br />
+    </div>
+    <br />
+    <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
+    <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Cari Listesi</a>
+}

@@ -1,0 +1,39 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "DepartmanPersonelSatis";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>@ViewBag.DepartmanAdi Departmanındaki İlgili Personel Satışı</h2>
+<br />
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Personel Adı : @ViewBag.DepartmanPersoneliSatisi</li>
+</ol>
+<table class="table table-condensed">
+    <tr>
+        <th>Satış ID</th>
+        <th>Ürün</th>
+        <th>Cari</th>
+        <th>Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SatisHareketID</td>
+            <td>@item.Urun.UrunAdi</td>
+            <td>@item.Cari.CariAdi @item.Cari.CariSoyadi</td>
+            <td>@item.SatisHareketFiyati</td>
+            <td>@item.SatisHareketAdedi</td>
+            <td>@item.SatisHareketToplamTutari</td>
+            <td>@item.SatisHareketTarihi</td>
+            <td><a href="#" class="btn btn-default" style="background-color:mediumslateblue; color:aliceblue">Yazdır</a></td>
+        </tr>
+    }
+</table>
+<a href="/Departman/DepartmanListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Departman Listesi</a>

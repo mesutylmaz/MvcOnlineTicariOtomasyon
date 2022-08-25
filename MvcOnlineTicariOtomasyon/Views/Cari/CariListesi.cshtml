@@ -1,0 +1,34 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@model List<Cari>
+@{
+    ViewBag.Title = "CariListesi";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" style="margin-top:20px;">
+    <tr>
+        <th>ID</th>
+        <th>Cari Adı</th>
+        <th>Cari Soyadı</th>
+        <th>Cari Maili</th>
+        <th>Cari Şehir</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CariID</td>
+            <td>@item.CariAdi</td>
+            <td>@item.CariSoyadi</td>
+            <td>@item.CariMaili</td>
+            <td>@item.CariSehir</td>
+            <td>
+                <a href="/Cari/CariGetir/@item.CariID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
+                <a href="/Cari/CariSil/@item.CariID" class="btn" style="background-color:firebrick; color:aliceblue">Sil</a>
+                <a href="/Cari/CariSatisGecmisi/@item.CariID" class="btn" style="background-color:plum; color:aliceblue">Satış Geçmişi</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Cari/CariEkle" class="btn btn-info">Cari Ekle</a>
+<a href="/Cari/PasifCariListesi" class="btn btn-info" style="background-color:olive; color:aliceblue;">Pasif Cari Listesi</a>

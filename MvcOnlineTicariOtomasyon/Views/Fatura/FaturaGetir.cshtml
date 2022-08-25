@@ -1,0 +1,40 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Fatura
+@{
+    ViewBag.Title = "FaturaGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Fatura Güncelleme Sayfası</h2>
+<br />
+
+@using (Html.BeginForm("FaturaGuncelle", "Fatura", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.FaturaID)
+    Seri No
+    @Html.TextBoxFor(z => z.FaturaSeriNo, new { @class = "form-control" })
+    <br />
+    Sıra No
+    @Html.TextBoxFor(z => z.FaturaSiraNo, new { @class = "form-control" })
+    <br />
+    Vergi Dairesi
+    @Html.TextBoxFor(z => z.FaturaVergiDairesi, new { @class = "form-control" })
+    <br />
+    Tarih
+    @Html.TextBoxFor(z => z.FaturaTarih, new { @class = "form-control" })
+    <br />
+    Saat
+    @Html.TextBoxFor(z => z.FaturaSaat, new { @class = "form-control" })
+    <br />
+    Teslim Eden
+    @Html.TextBoxFor(z => z.FaturaTeslimEden, new { @class = "form-control" })
+    <br />
+    Teslim Alan
+    @Html.TextBoxFor(z => z.FaturaTeslimAlan, new { @class = "form-control" })
+    <br />
+</div>
+    <br />
+    <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
+    <a href="/Fatura/Index" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Fatura Listesi</a>
+}

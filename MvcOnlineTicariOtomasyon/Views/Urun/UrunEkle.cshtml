@@ -1,0 +1,36 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Urun
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Ürün Ekleme Sayfası</h2>
+<br />
+
+<form class="form-group" method="post">
+    Ürün Görseli
+    @Html.TextBoxFor(x => x.UrunGorseli, new { @class = "form-control" })
+    <br />
+    Ürün Adı
+    @Html.TextBoxFor(x => x.UrunAdi, new { @class = "form-control" })
+    <br />
+    Ürün Markası
+    @Html.TextBoxFor(x => x.UrunMarka, new { @class = "form-control" })
+    <br />
+    Ürün Stoğu
+    @Html.TextBoxFor(x => x.UrunStok, new { @class = "form-control" })
+    <br />
+    Ürün Alış Fiyatı
+    @Html.TextBoxFor(x => x.UrunAlisFiyati, new { @class = "form-control" })
+    <br />
+    Ürün Satış Fiyatı
+    @Html.TextBoxFor(x => x.UrunSatisFiyati, new { @class = "form-control" })
+    <br />
+    Ürün Kategorisi
+    @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+    <a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Ürün Listesi</a>
+</form>
+

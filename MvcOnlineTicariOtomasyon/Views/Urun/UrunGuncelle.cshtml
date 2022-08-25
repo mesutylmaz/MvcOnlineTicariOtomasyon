@@ -1,0 +1,34 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Urun
+@{
+    ViewBag.Title = "UrunGuncelle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Ürün Güncelleme Sayfası</h2>
+<br />
+
+@using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.UrunID)      @*Boş ÜrünID gönderip hataya sebep olmasın diye bunu ekledim*@
+        Ürün Görseli
+        @Html.TextBoxFor(z => z.UrunGorseli, new { @class = "form-control" })<br />
+        Ürün Adı
+        @Html.TextBoxFor(z => z.UrunAdi, new { @class = "form-control" })<br />
+        Ürün Markası
+        @Html.TextBoxFor(z => z.UrunMarka, new { @class = "form-control" })<br />
+        Ürün Stoğu
+        @Html.TextBoxFor(z => z.UrunStok, new { @class = "form-control" })<br />
+        Ürün Alış Fiyatı
+        @Html.TextBoxFor(z => z.UrunAlisFiyati, new { @class = "form-control" })<br />
+        Ürün Satış Fiyatı
+        @Html.TextBoxFor(z => z.UrunSatisFiyati, new { @class = "form-control" })<br />
+        Ürün Kategorisi
+        @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
+        <br />
+    </div>
+    <br />
+    <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
+    <a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Ürün Listesi</a>
+}

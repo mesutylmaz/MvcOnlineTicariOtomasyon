@@ -1,0 +1,37 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@model List<Urun>
+@{
+    ViewBag.Title = "PasifUrunListesi";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" style="margin-top:20px;">
+    <tr>
+        <th>ID</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Markası</th>
+        <th>Ürün Stoğu</th>
+        <th>Ürün Alış Fiyatı</th>
+        <th>Ürün Satış Fiyatı</th>
+        <th>Ürün Kategorisi</th>
+        <th>Ürün Görseli</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UrunID</td>
+            <td>@item.UrunAdi</td>
+            <td>@item.UrunMarka</td>
+            <td>@item.UrunStok</td>
+            <td>@item.UrunAlisFiyati</td>
+            <td>@item.UrunSatisFiyati</td>
+            <td>@item.Kategori.KategoriAdi</td>
+            <td>@item.UrunGorseli</td>
+            <td>
+                <a href="/Urun/UrunuAktifYap/@item.UrunID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Ürün Listesi</a>
