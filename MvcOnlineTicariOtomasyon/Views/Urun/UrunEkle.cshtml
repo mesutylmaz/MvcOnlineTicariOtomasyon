@@ -15,42 +15,39 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            Ürün Görseli
+            Ürün Görseli<br />
             @*@Html.LabelFor(x => x.UrunGorseli, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(x => x.UrunGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
-            </div>
-
+            @Html.EditorFor(x => x.UrunGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
         </div>
+
         <div class="form-group">
             Ürün Adı
             @Html.TextBoxFor(x => x.UrunAdi, new { @class = "form-control" })
-           
         </div>
+
         <div class="form-group">
             Ürün Markası
             @Html.TextBoxFor(x => x.UrunMarka, new { @class = "form-control" })
-            
         </div>
+
         <div class="form-group">
             Ürün Stoğu
             @Html.TextBoxFor(x => x.UrunStok, new { @class = "form-control" })
-           
         </div>
+
         <div class="form-group">
             Ürün Alış Fiyatı
             @Html.TextBoxFor(x => x.UrunAlisFiyati, new { @class = "form-control" })
-           
         </div>
+
         <div class="form-group">
             Ürün Satış Fiyatı
             @Html.TextBoxFor(x => x.UrunSatisFiyati, new { @class = "form-control" })
-            
         </div>
+
         <div class="form-group">
             Ürün Kategorisi
             @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
-            
         </div>
     </div>
 

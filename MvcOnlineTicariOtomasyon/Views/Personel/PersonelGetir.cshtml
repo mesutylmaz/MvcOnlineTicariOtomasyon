@@ -8,19 +8,24 @@
 <h2>Personel Güncelleme Sayfası</h2>
 <br />
 
-@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @*@Html.AntiForgeryToken()*@
     <div class="form-group">
         @Html.HiddenFor(x => x.PersonelID)
+
         Personel Görseli
-        @Html.TextBoxFor(z => z.PersonelGorseli, new { @class = "form-control" })
+        @Html.EditorFor(z => z.PersonelGorseli, new { htmlAttributes = new { @class = "form-control", type = "file" } })
         <br />
+
         Personel Adı
         @Html.TextBoxFor(z => z.PersonelAdi, new { @class = "form-control" })
         <br />
+
         Personel Soyadı
         @Html.TextBoxFor(z => z.PersonelSoyadi, new { @class = "form-control" })
         <br />
+
         Departman
         @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
         <br />

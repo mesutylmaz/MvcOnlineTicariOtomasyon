@@ -10,18 +10,17 @@
 
 @using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
     @Html.HiddenFor(x => x.UrunID)
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         <div class="form-group">
             Ürün Görseli
+            <br />
             @*@Html.LabelFor(x => x.UrunGorseli, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(x => x.UrunGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
-            </div>
-        </div>
-        <div class="form-group">
+            @Html.EditorFor(x => x.UrunGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+            <br />
+
             Ürün Adı
             @Html.TextBoxFor(z => z.UrunAdi, new { @class = "form-control" })<br />
             Ürün Markası
@@ -39,6 +38,6 @@
         <br />
         <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
         <a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Ürün Listesi</a>
-    </div>
+    
 }
 

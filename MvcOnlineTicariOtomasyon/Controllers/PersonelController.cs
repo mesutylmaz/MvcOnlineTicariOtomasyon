@@ -1,6 +1,7 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -71,13 +72,28 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonelEkle(Personel personel)
+        [ValidateAntiForgeryToken]
+        public ActionResult PersonelEkle([Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli)
         {
-            personel.PersonelDurumu = true;           //Bu satır yerine Personel Class'da Durum için yazılan kodu get-set ederek de yazabiliriz.
-            context.Personeller.Add(personel);
-            context.SaveChanges();
-            return RedirectToAction("PersonelListesi");
-
+            if (ModelState.IsValid)
+            {
+                foreach (var item in PersonelGorseli)
+                {
+                    if (item.ContentLength > 0)
+                    {
+                        var image = Path.GetFileName(item.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Images"), image);
+                        item.SaveAs(path);
+                        personel.PersonelGorseli = "/Images/" + image;
+                        personel.PersonelDurumu = true;
+                        context.Personeller.Add(personel);
+                        context.SaveChanges();
+                        return RedirectToAction("PersonelListesi");
+                    }
+                    return HttpNotFound();
+                }
+            }
+            return HttpNotFound();
         }
 
 
@@ -99,17 +115,31 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
 
-        public ActionResult PersonelGuncelle(Personel personel)
+        public ActionResult PersonelGuncelle([Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli)
         {
-
-            var deger = context.Personeller.Find(personel.PersonelID);
-            deger.PersonelGorseli = personel.PersonelGorseli;
-            deger.PersonelAdi = personel.PersonelAdi;
-            deger.PersonelSoyadi = personel.PersonelSoyadi;
-            deger.Departmanid = personel.Departmanid;
-            context.SaveChanges();
-            return RedirectToAction("PersonelListesi");
-
+            if (ModelState.IsValid)
+            {
+                foreach (var item in PersonelGorseli)
+                {
+                    if (item.ContentLength > 0)
+                    {
+                        var image = Path.GetFileName(item.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Images"), image);
+                        item.SaveAs(path);
+                        personel.PersonelGorseli = "/Images/" + image;
+                        personel.PersonelDurumu = true;
+                        var deger = context.Personeller.Find(personel.PersonelID);
+                        deger.PersonelGorseli = personel.PersonelGorseli;
+                        deger.PersonelAdi = personel.PersonelAdi;
+                        deger.PersonelSoyadi = personel.PersonelSoyadi;
+                        deger.Departmanid = personel.Departmanid;
+                        context.SaveChanges();
+                        return RedirectToAction("PersonelListesi");
+                    }
+                    return HttpNotFound();
+                }
+            }
+            return HttpNotFound();
         }
     }
 }
