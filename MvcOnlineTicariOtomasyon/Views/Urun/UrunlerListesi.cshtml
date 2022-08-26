@@ -28,7 +28,16 @@
             <td>@item.UrunAlisFiyati</td>
             <td>@item.UrunSatisFiyati</td>
             <td>@item.Kategori.KategoriAdi</td>
-            <td>@item.UrunGorseli</td>
+            <td>
+                @if (item.UrunGorseli == null || item.UrunGorseli == "")
+                {
+                    <img src="~/Images/resim-yok.png" width="80" height="80" />
+                }
+                else
+                {
+                    <img src="@item.UrunGorseli" width="80" height="80" />
+                }
+            </td>
             <td>
                 <a href="/Urun/UrunGuncelle/@item.UrunID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
                 <a href="/Urun/UrunuPasifYap/@item.UrunID" class="btn" style="background-color:firebrick; color:aliceblue">Sil</a>

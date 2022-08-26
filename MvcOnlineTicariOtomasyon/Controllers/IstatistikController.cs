@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,72 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 {
     public class IstatistikController : Controller
     {
+
+        Context context = new Context();
+
         // GET: Istatistik
         public ActionResult Index()
         {
+            var deger1 = context.Cariler.Count().ToString();            
+            ViewBag.d1 = deger1;
+
+            var deger2 = context.Urunler.Count().ToString();
+            ViewBag.d2 = deger2;
+
+            var deger3 = context.Personeller.Count().ToString();
+            ViewBag.d3 = deger3;
+
+            var deger4 = context.Kategoriler.Count().ToString();
+            ViewBag.d4 = deger4;
+
+            var deger5 = context.Urunler.Sum(x=>x.UrunStok).ToString();     //Stok Sayısı
+            ViewBag.d5 = deger5;
+
+            var deger6 = (from x in context.Urunler select x.UrunMarka).Distinct().Count().ToString();     //Marka Sayısı
+            ViewBag.d6 = deger6;
+
+            var deger7 = context.Urunler.Count(x=>x.UrunStok<=20).ToString();
+            ViewBag.d7 = deger7;
+
+            var deger8 = (from x in context.Urunler orderby x.UrunSatisFiyati descending select x.UrunAdi).FirstOrDefault();    //Max Fiyatlı Ürün Adı
+            ViewBag.d8 = deger8;
+
+            var deger9 = (from x in context.Urunler orderby x.UrunSatisFiyati ascending select x.UrunAdi).FirstOrDefault();    //Min Fiyatlı Ürün Adı
+            ViewBag.d9 = deger9;
+
+            var deger10 = context.Urunler.GroupBy(x => x.UrunMarka).OrderByDescending(x => x.Count()).Select(y => y.Key).FirstOrDefault();
+            ViewBag.d10 = deger10;
+
+            var deger11 = context.Urunler.Count(x=>x.UrunAdi=="Buzdolabı").ToString();
+            ViewBag.d11 = deger11;
+
+            var deger12 = context.Urunler.Count(x => x.UrunAdi == "Laptop").ToString();
+            ViewBag.d12 = deger12;
+
+            //var deger13 = (from x in context.SatisHareketleri orderby x.SatisHareketAdedi descending select x.Urun.UrunAdi).Distinct().ToString();
+            var deger13 = context.Urunler.Where(u => u.UrunID == (context.SatisHareketleri.GroupBy(x => x.Urunid).OrderByDescending(z => z.Count()).Select(y => y.Key).FirstOrDefault())).Select(k => k.UrunAdi).FirstOrDefault();
+            ViewBag.d13 = deger13;
+
+            var deger14 = context.SatisHareketleri.Sum(x=>x.SatisHareketToplamTutari).ToString();
+            ViewBag.d14 = deger14;
+
+            DateTime bugun = DateTime.Today;
+            var deger15 = context.SatisHareketleri.Count(x=>x.SatisHareketTarihi==bugun).ToString();
+            ViewBag.d15 = deger15;
+
+            var deger16 = context.SatisHareketleri.Where(x => x.SatisHareketTarihi == bugun).Sum(x=>x.SatisHareketToplamTutari).ToString();
+            //ViewBag.d16 = 0;
+            //if(deger16 == null || deger16 == "")
+            //{
+            //    deger16 = "0";
+            //    ViewBag.d16 = deger16;
+            //}
+            //else
+            //{
+            //    ViewBag.d16 = deger16;
+            //}
+            ViewBag.d16 = deger16;
+
             return View();
         }
     }
