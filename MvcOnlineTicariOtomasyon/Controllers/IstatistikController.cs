@@ -77,5 +77,36 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
             return View();
         }
+
+
+        public ActionResult KolayTablolar()
+        {
+            var sorgu = (from x in context.Cariler
+                         group x by x.CariSehir into g
+                         select new SinifGrup
+                         {
+                             Sayi = g.Count(),
+                             Sehir = g.Key
+                         });
+            return View(sorgu.ToList());
+        }
+
+
+
+
+
+
+
+        public PartialViewResult Partial1()
+        {
+            var sorgu2 = (from x in context.Personeller
+                         group x by x.Departmanid into g
+                         select new SinifGrup2
+                         {
+                             Sayi = g.Count(),
+                             Departman = g.Key
+                         });
+            return PartialView(sorgu2.ToList());
+        }
     }
 }

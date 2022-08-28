@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MvcOnlineTicariOtomasyon.Models.Siniflar.SinifGrup2>
+Merhaba Dünya
+<table>
+    <tr>
+        <td>Departman</td>
+        <td>Adet</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Departman</td>
+            <td>@item.Sayi</td>
+        </tr>
+    }
+</table>
+<br />
+<div style="background-color:#ff0000">
+    Partial View>
+
+</div>
