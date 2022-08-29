@@ -100,12 +100,47 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public PartialViewResult Partial1()
         {
             var sorgu2 = (from x in context.Personeller
-                         group x by x.Departmanid into g
+                          where x.PersonelDurumu ==true
+                         group x by x.Departman.DepartmanAdi into g
                          select new SinifGrup2
                          {
                              Sayi = g.Count(),
                              Departman = g.Key
                          });
+            return PartialView(sorgu2.ToList());
+        }
+
+
+
+
+
+        public PartialViewResult Partial2()
+        {
+            var cariler = context.Cariler.ToList();
+            return PartialView(cariler);
+        }
+
+
+
+
+        public PartialViewResult Partial3()
+        {
+            var sorgu = context.Urunler.ToList();
+            return PartialView(sorgu);
+        }
+
+
+
+        public PartialViewResult Partial4()
+        {
+            var sorgu2 = (from x in context.Urunler
+                          where x.UrunDurumu == true
+                          group x by x.UrunMarka into g
+                          select new SinifGrup3
+                          {
+                              Sayi = g.Count(),
+                              Marka = g.Key
+                          });
             return PartialView(sorgu2.ToList());
         }
     }
