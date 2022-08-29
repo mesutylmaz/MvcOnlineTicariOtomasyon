@@ -141,5 +141,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             }
             return HttpNotFound();
         }
+
+
+
+
+
+
+
+
+        public ActionResult PersonelKarti()
+        {
+            var personeller = context.Personeller.ToList();
+            return View(personeller);
+        }
     }
 }
