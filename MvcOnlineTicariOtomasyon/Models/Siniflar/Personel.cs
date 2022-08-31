@@ -13,21 +13,24 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         public int PersonelID { get; set; }
 
 
+        //[Display(Name ="Personel Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(100)]
         public string PersonelAdi { get; set; }
 
 
+        //[Display(Name ="Personel Soyadı")]
         [Column(TypeName = "Varchar")]
         [StringLength(100)]
         public string PersonelSoyadi { get; set; }
 
 
+        //[Display(Name ="Personel Görseli")]
         [Column(TypeName = "Varchar")]
         [StringLength(250)]
         public string PersonelGorseli { get; set; }
 
-
+        //[Display(Name ="Personel Durumu")]
         public bool PersonelDurumu { get; set; }
 
 

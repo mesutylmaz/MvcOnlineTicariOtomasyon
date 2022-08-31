@@ -61,13 +61,13 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult PersonelEkle()
         {
-            List<SelectListItem> deger1 = (from x in context.Departmanlar.ToList()
-                                           select new SelectListItem
-                                           {
-                                               Text = x.DepartmanAdi,
-                                               Value = x.DepartmanID.ToString()
-                                           }).ToList();
-            ViewBag.dgr1 = deger1;
+            List<SelectListItem> deger21 = (from x in context.Departmanlar.ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = x.DepartmanAdi,
+                                                Value = x.DepartmanID.ToString()
+                                            }).ToList();
+            ViewBag.dgr121 = deger21;
             return View();
         }
 
@@ -85,15 +85,60 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                         var path = Path.Combine(Server.MapPath("~/Images"), image);
                         item.SaveAs(path);
                         personel.PersonelGorseli = "/Images/" + image;
+
                         personel.PersonelDurumu = true;
                         context.Personeller.Add(personel);
                         context.SaveChanges();
-                        return RedirectToAction("PersonelListesi");
+                        return RedirectToAction(nameof(PersonelListesi));
+
+
+                        //string[] uzantilar = { ".jpeg", ".png", ".gif", ".jpg" };
+
+                        //for (int j = 0; j < 4; j++)
+                        //{
+                        //    for (int i = 0; i < 4; i++)
+                        //    {
+                        //        char harf = uzantilar[j].ToCharArray()[i];
+                        //        int sayac = 0;
+                        //        char[] harfler = { };
+                        //        harfler[sayac] = harf;
+                        //        sayac += 1;
+
+                        //        for (int m = 0; m < image.Length - 1; m++)
+                        //        {
+                        //            if (harfler[0] == image[m])
+                        //            {
+                        //                if (harfler[1] == image[m + 1])
+                        //                {
+                        //                    if (harfler[2] == image[m + 1])
+                        //                    {
+                        //                        if (harfler[3] == image[m + 1])
+                        //                        {
+                        //                            personel.PersonelDurumu = true;
+                        //                            context.Personeller.Add(personel);
+                        //                            context.SaveChanges();
+                        //                            return RedirectToAction(nameof(PersonelListesi));
+                        //                        }
+                        //                    }
+                        //                }
+                        //            }
+                        //        }
+
+                        //    }
+                        //}
                     }
-                    return HttpNotFound();
+                    return View();
                 }
+                //    else
+                //{
+                //    var resimYolu = "NULL";
+                //    personel.PersonelGorseli = resimYolu;
+                //    context.Personeller.Add(personel);
+                //    context.SaveChanges();
+                //}
             }
             return HttpNotFound();
+
         }
 
 

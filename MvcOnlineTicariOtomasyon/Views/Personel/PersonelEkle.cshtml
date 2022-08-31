@@ -8,31 +8,40 @@
 <h2>Personel Ekleme Sayfası</h2>
 <br />
 
-<form class="form-group" method="post" enctype="multipart/form-data">
+
+
+@using (Html.BeginForm("PersonelEkle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    Personel Görseli<br />
-    @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
-    <br />
-    @*<div class="col-md-10">
-        @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
-    </div>*@
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            Personel Görseli<br />
 
-
-    Personel Adı
-    @Html.TextBoxFor(x => x.PersonelAdi, new { @class = "form-control" })
-    <br />
-
-    Personel Soyadı
-    @Html.TextBoxFor(x => x.PersonelSoyadi, new { @class = "form-control" })
-    <br />
-
-    Departman
-    @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
-    <br />
-
+            @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+            <br />
+            @*<div class="col-md-10">
+                    @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+                </div>*@
+        </div>
+        <div class="form-group">
+            Personel Adı
+            @Html.TextBoxFor(x => x.PersonelAdi, new { @class = "form-control" })
+            <br />
+        </div>
+        <div class="form-group">
+            Personel Soyadı
+            @Html.TextBoxFor(x => x.PersonelSoyadi, new { @class = "form-control" })
+            <br />
+        </div>
+        <div class="form-group">
+            Departman
+            @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr121, new { @class = "form-control" })
+            <br />
+        </div>
+    </div>
     <button class="btn btn-success">Kaydet</button>
     <a href="/Personel/PersonelListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Personel Listesi</a>
-</form>
+}
 

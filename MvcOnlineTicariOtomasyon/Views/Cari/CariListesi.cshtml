@@ -7,22 +7,22 @@
 
 <table class="table table-bordered" style="margin-top:20px;">
     <tr>
-        <th>ID</th>
-        <th>Cari Adı</th>
-        <th>Cari Soyadı</th>
-        <th>Cari Maili</th>
-        <th>Cari Şehir</th>
-        <th>İşlemler</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">ID</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">Cari Adı</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">Cari Soyadı</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">Cari Maili</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">Cari Şehir</th>
+        <th style="display:table table-cell; vertical-align:middle;" class="text-center">İşlemler</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.CariID</td>
-            <td>@item.CariAdi</td>
-            <td>@item.CariSoyadi</td>
-            <td>@item.CariMaili</td>
-            <td>@item.CariSehir</td>
-            <td>
+            <td style="display:table table-cell; vertical-align:middle;" class="text-center">@item.CariID</td>
+            <td style="display:table table-cell; vertical-align:middle;">@item.CariAdi</td>
+            <td style="display:table table-cell; vertical-align:middle;">@item.CariSoyadi</td>
+            <td style="display:table table-cell; vertical-align:middle;">@item.CariMaili</td>
+            <td style="display:table table-cell; vertical-align:middle;">@item.CariSehir</td>
+            <td style="display:table table-cell; vertical-align:middle;" class="text-center">
                 <a href="/Cari/CariGetir/@item.CariID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
                 <a href="/Cari/CariSil/@item.CariID" class="btn" style="background-color:firebrick; color:aliceblue">Sil</a>
                 <a href="/Cari/CariSatisGecmisi/@item.CariID" class="btn" style="background-color:plum; color:aliceblue">Satış Geçmişi</a>
@@ -32,3 +32,4 @@
 </table>
 <a href="/Cari/CariEkle" class="btn btn-info">Cari Ekle</a>
 <a href="/Cari/PasifCariListesi" class="btn btn-info" style="background-color:olive; color:aliceblue;">Pasif Cari Listesi</a>
+
