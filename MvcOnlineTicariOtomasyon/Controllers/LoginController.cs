@@ -52,32 +52,6 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-
-
-
-        [HttpGet]
-        public ActionResult Partial2()
-        {
-            return PartialView();
-        }
-
-        [HttpPost]
-        public ActionResult Partial2(Cari cari)
-        {
-            return View();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpGet]
         public ActionResult CariLogin1()
         {
@@ -99,6 +73,52 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult AdminLogin()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult AdminLogin(Admin admin)
+        {
+            var bilgiler = context.Admins.FirstOrDefault(x => x.KullaniciAdi == admin.KullaniciAdi && x.KullaniciSifresi == admin.KullaniciSifresi);
+            if (bilgiler != null)
+            {
+                FormsAuthentication.SetAuthCookie(bilgiler.KullaniciAdi, false);
+                Session["KullaniciAdi"] = bilgiler.KullaniciAdi.ToString();
+                return RedirectToAction("KategorileriListele", "Kategori");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
 
 

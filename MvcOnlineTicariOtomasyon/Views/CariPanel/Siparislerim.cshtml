@@ -1,0 +1,29 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "Siparislerim";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+}
+
+<br />
+<h2>Sipariş Geçmişim</h2>
+<br />
+@using (Html.BeginForm("Siparislerim", "CariPanel", FormMethod.Post))
+{
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>Tarih</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Urun.UrunAdi</td>
+                <td>@item.SatisHareketFiyati</td>
+                <td>@Convert.ToDateTime(item.SatisHareketTarihi).ToString("dd/mm/yyyy")</td>
+            </tr>
+        }
+    </table>
+    <button class="btn btn-info">Bilgilerimi Güncelle</button>
+}

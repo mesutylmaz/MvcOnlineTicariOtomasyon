@@ -2853,7 +2853,6 @@
     <Content Include="Views\Yapilacak\PasifIndex.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Partial1.cshtml" />
-    <Content Include="Views\Login\Partial2.cshtml" />
     <Content Include="webpanel\.travis.yml" />
     <Content Include="webpanel\LICENSE" />
     <Content Include="webpanel\package-lock.json" />
@@ -2873,6 +2872,7 @@
     <Content Include="webpanel\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\_CariLayout.cshtml" />
     <Content Include="Views\CariPanel\Index.cshtml" />
+    <Content Include="Views\CariPanel\Siparislerim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

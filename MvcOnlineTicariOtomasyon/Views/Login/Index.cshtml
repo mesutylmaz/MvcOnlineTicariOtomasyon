@@ -119,7 +119,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="pop-up">
         <div id="small-dialog1" class="mfp-hide book-form">
 
-            @Html.Action("Partial2", "Login")
+            <div class="login-form login-form-left">
+                <div class="agile-row">
+                    <h3>Personel Girişi</h3>
+                    <div class="clear"></div>
+                    <div class="login-agileits-top">
+                        @using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post))
+                        {
+                            <input type="text" class="name" name="KullaniciAdi" Placeholder="Kullanıcı Adınızı Giriniz" required="" />
+                            <input type="password" class="password" name="KullaniciSifresi" Placeholder="Şifrenizi Giriniz" required="" />
+                            <input type="submit" value="Giriş Yap">
+                        }
+                        </div>
+                    <div class="login-agileits-bottom">
+                        <h6><a href="#">Şifremi Unuttum</a></h6>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
