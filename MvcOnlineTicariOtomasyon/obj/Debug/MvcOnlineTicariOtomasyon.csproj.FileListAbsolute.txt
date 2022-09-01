@@ -80,3 +80,7 @@ C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari O
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.CoreCompileInputs.cache
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.dll
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.pdb
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.dll
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.Mvc.dll
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.xml
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.Mvc.xml

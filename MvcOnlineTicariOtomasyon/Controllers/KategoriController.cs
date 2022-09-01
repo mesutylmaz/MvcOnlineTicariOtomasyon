@@ -1,9 +1,10 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc;       //ToPagedList için
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -14,12 +15,16 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
         // GET: Kategori
-        public ActionResult KategorileriListele()
+        //public ActionResult KategorileriListele()
+        //{
+        //    var degerler = context.Kategoriler.Where(x=>x.KategoriDurumu==true).ToList();
+        //    return View(degerler);
+        //}
+        public ActionResult KategorileriListele(int sayfa = 1)      //Listelemeyi 1. sayfa için yap
         {
-            var degerler = context.Kategoriler.Where(x=>x.KategoriDurumu==true).ToList();
+            var degerler = context.Kategoriler.ToList().ToPagedList(sayfa, 4);      //ilgili sayfada sadece ilk 4 kategoriyi göster
             return View(degerler);
         }
-
 
 
 

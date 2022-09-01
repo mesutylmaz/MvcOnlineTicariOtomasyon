@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;    //ToPagedList için
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,11 +15,24 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         Context context = new Context();
 
         // GET: Urun
-        public ActionResult UrunlerListesi()
+        //public ActionResult UrunlerListesi()
+        //{
+        //    var urunler = context.Urunler.Where(x=>x.UrunDurumu==true).ToList();        //Ürün Durumu True(Aktif) olanları Listele
+        //    return View(urunler);
+        //}
+
+        public ActionResult UrunlerListesi(string aranacakKelime)
         {
-            var urunler = context.Urunler.Where(x=>x.UrunDurumu==true).ToList();        //Ürün Durumu True(Aktif) olanları Listele
-            return View(urunler);
+            var urunler = from x in context.Urunler select x;
+            if (!string.IsNullOrEmpty(aranacakKelime))
+            {
+                urunler = urunler.Where(y => y.UrunAdi.Contains(aranacakKelime) || y.UrunMarka.Contains(aranacakKelime));
+            }
+            return View(urunler.ToList());
         }
+
+
+
 
 
 
