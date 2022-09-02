@@ -62,18 +62,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var deger15 = context.SatisHareketleri.Count(x=>x.SatisHareketTarihi==bugun).ToString();
             ViewBag.d15 = deger15;
 
-            var deger16 = context.SatisHareketleri.Where(x => x.SatisHareketTarihi == bugun).Sum(x=>x.SatisHareketToplamTutari).ToString();
-            //ViewBag.d16 = 0;
-            //if(deger16 == null || deger16 == "")
-            //{
-            //    deger16 = "0";
-            //    ViewBag.d16 = deger16;
-            //}
-            //else
-            //{
-            //    ViewBag.d16 = deger16;
-            //}
-            ViewBag.d16 = deger16;
+            var deger16 = context.SatisHareketleri.Where(x => x.SatisHareketTarihi == bugun).Sum(x=> (decimal?)x.SatisHareketToplamTutari).ToString();  //Bugün kasa tutarı null olursa hata vermemesi için (decimal?) ifadesini yazdık.
+            
+            if (deger16 == null || deger16=="")
+            {
+                deger16 = "0,00 ₺";
+                ViewBag.d16 = deger16;
+            }
+            else
+            {
+                ViewBag.d16 = deger16;
+            }
+            
 
             return View();
         }

@@ -7,17 +7,18 @@
 
 <table class="table table-bordered" style="margin-top:20px;">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Personel Görseli</th>
         <th>Personel Adı</th>
         <th>Personel Soyadı</th>
         <th>Departman</th>
         <th>İşlemler</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.PersonelID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>
                 @if (item.PersonelGorseli == null || item.PersonelGorseli == "")
                 {

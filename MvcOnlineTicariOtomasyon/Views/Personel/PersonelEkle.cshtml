@@ -18,12 +18,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             Personel Görseli<br />
-
-            @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+            <input type="file" name="PersonelGorseli" />
             <br />
-            @*<div class="col-md-10">
-                    @Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
-                </div>*@
+            @*@Html.EditorFor(x => x.PersonelGorseli, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+            <br />*@
         </div>
         <div class="form-group">
             Personel Adı

@@ -18,20 +18,21 @@
 
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Açıklama</th>
         <th>Miktar</th>
         <th>Birim Fiyat</th>
         <th>Tutar</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.FaturaKalemID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>@item.FaturaKalemAciklama</td>
             <td>@item.FaturaKalemMiktar</td>
-            <td>@item.FaturaKalemBirimFiyat</td>
-            <td>@item.FaturaKalemTutar</td>
+            <td>@item.FaturaKalemBirimFiyat ₺</td>
+            <td>@item.FaturaKalemTutar ₺</td>
         </tr>
     }
 </table>

@@ -11,10 +11,11 @@
             <th>Kategori Adı</th>
             <th>İşlemler</th>
         </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.KategoriID</td>
+        @{int sayac = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@{sayac += 1;} @sayac</td>
                 <td>@item.KategoriAdi</td>
                 <td>
                     <a href="/Kategori/KategoriGuncelle/@item.KategoriID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
@@ -60,7 +61,7 @@
     }
 </table>
 
-@Html.PagedListPager((IPagedList)Model, sayfa=>Url.Action("KategorileriListele", new { sayfa }))    @*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("KategorileriListele", new { sayfa }))    @*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
 
 <a href="/Kategori/KategoriEkle" class="btn btn-info">Kategori Ekle</a>
 <a href="/Kategori/PasifKategorileriListele" class="btn btn-info" style="background-color:olive; color:aliceblue;">Pasif Kategori Listesi</a>

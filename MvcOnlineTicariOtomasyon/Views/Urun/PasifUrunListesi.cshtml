@@ -7,7 +7,7 @@
 
 <table class="table table-bordered" style="margin-top:20px;">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Ürün Adı</th>
         <th>Ürün Markası</th>
         <th>Ürün Stoğu</th>
@@ -17,15 +17,16 @@
         <th>Ürün Görseli</th>
         <th>İşlemler</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.UrunID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>@item.UrunAdi</td>
             <td>@item.UrunMarka</td>
             <td>@item.UrunStok</td>
-            <td>@item.UrunAlisFiyati</td>
-            <td>@item.UrunSatisFiyati</td>
+            <td>@item.UrunAlisFiyati ₺</td>
+            <td>@item.UrunSatisFiyati ₺</td>
             <td>@item.Kategori.KategoriAdi</td>
             <td>
                 @if (item.UrunGorseli == null || item.UrunGorseli == "")

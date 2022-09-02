@@ -91,27 +91,44 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UrunEkle([Bind(Include = "UrunID, UrunAdi, UrunMarka, UrunStok, UrunAlisFiyati, UrunSatisFiyati, UrunDurumu, UrunGorseli, Kategoriid, Kategori")] Urun urun, IEnumerable<HttpPostedFileBase> UrunGorseli)
+        public ActionResult UrunEkle(/*[Bind(Include = "UrunID, UrunAdi, UrunMarka, UrunStok, UrunAlisFiyati, UrunSatisFiyati, UrunDurumu, UrunGorseli, Kategoriid, Kategori")] Urun urun, IEnumerable<HttpPostedFileBase> UrunGorseli*/ Urun urun)
         {
-            if (ModelState.IsValid)
+            if (Request.Files.Count > 0)
             {
-                foreach (var item in UrunGorseli)
-                {
-                    if (item.ContentLength > 0)
-                    {
-                        var image = Path.GetFileName(item.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Images"), image);
-                        item.SaveAs(path);
-                        urun.UrunGorseli = "/Images/" + image;
-                        urun.UrunDurumu = true;
-                        context.Urunler.Add(urun);
-                        context.SaveChanges();
-                        return RedirectToAction(nameof(UrunlerListesi));
-                    }
-                    return HttpNotFound();
-                }
+                string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Images/" + dosyaAdi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                urun.UrunGorseli = "/Images/" + dosyaAdi + uzanti;
             }
-            return HttpNotFound();
+            urun.UrunDurumu = true;
+            context.Urunler.Add(urun);
+            context.SaveChanges();
+            return RedirectToAction(nameof(UrunlerListesi));
+
+
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in UrunGorseli)
+            //    {
+            //        if (item.ContentLength > 0)
+            //        {
+            //            var image = Path.GetFileName(item.FileName);
+            //            var path = Path.Combine(Server.MapPath("~/Images"), image);
+            //            item.SaveAs(path);
+            //            urun.UrunGorseli = "/Images/" + image;
+            //            urun.UrunDurumu = true;
+            //            context.Urunler.Add(urun);
+            //            context.SaveChanges();
+            //            return RedirectToAction(nameof(UrunlerListesi));
+            //        }
+            //        return HttpNotFound();
+            //    }
+            //}
+            //return HttpNotFound();
         }
 
 
@@ -138,35 +155,57 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
         [HttpPost]
-        public ActionResult UrunGuncelle([Bind(Include = "UrunID, UrunAdi, UrunMarka, UrunStok, UrunAlisFiyati, UrunSatisFiyati, UrunDurumu, UrunGorseli, Kategoriid, Kategori")] Urun urun, IEnumerable<HttpPostedFileBase> UrunGorseli)
+        public ActionResult UrunGuncelle(/*[Bind(Include = "UrunID, UrunAdi, UrunMarka, UrunStok, UrunAlisFiyati, UrunSatisFiyati, UrunDurumu, UrunGorseli, Kategoriid, Kategori")] Urun urun, IEnumerable<HttpPostedFileBase> UrunGorseli*/ Urun urun)
         {
-            if (ModelState.IsValid)
+            if (Request.Files.Count > 0)
             {
-                foreach (var item in UrunGorseli)
-                {
-                    if (item.ContentLength > 0)
-                    {
-                        var image = Path.GetFileName(item.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Images"), image);
-                        item.SaveAs(path);
-                        urun.UrunGorseli = "/Images/" + image;
-
-                        var deger = context.Urunler.Find(urun.UrunID);
-                        deger.UrunAdi = urun.UrunAdi;
-                        deger.UrunStok = urun.UrunStok;
-                        deger.UrunAlisFiyati = urun.UrunAlisFiyati;
-                        deger.UrunSatisFiyati = urun.UrunSatisFiyati;
-                        deger.UrunGorseli = urun.UrunGorseli;
-                        deger.UrunMarka = urun.UrunMarka;
-                        deger.Kategoriid = urun.Kategoriid;
-                        urun.UrunDurumu = true;
-                        context.SaveChanges();
-                        return RedirectToAction("UrunlerListesi");
-                    }
-                    return HttpNotFound();
-                }
+                string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Images/" + dosyaAdi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                urun.UrunGorseli = "/Images/" + dosyaAdi + uzanti;
             }
-            return HttpNotFound();
+            var deger = context.Urunler.Find(urun.UrunID);
+            deger.UrunAdi = urun.UrunAdi;
+            deger.UrunStok = urun.UrunStok;
+            deger.UrunAlisFiyati = urun.UrunAlisFiyati;
+            deger.UrunSatisFiyati = urun.UrunSatisFiyati;
+            deger.UrunGorseli = urun.UrunGorseli;
+            deger.UrunMarka = urun.UrunMarka;
+            deger.Kategoriid = urun.Kategoriid;
+            urun.UrunDurumu = true;
+            context.SaveChanges();
+            return RedirectToAction("UrunlerListesi");
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in UrunGorseli)
+            //    {
+            //        if (item.ContentLength > 0)
+            //        {
+            //            var image = Path.GetFileName(item.FileName);
+            //            var path = Path.Combine(Server.MapPath("~/Images"), image);
+            //            item.SaveAs(path);
+            //            urun.UrunGorseli = "/Images/" + image;
+
+            //            var deger = context.Urunler.Find(urun.UrunID);
+            //            deger.UrunAdi = urun.UrunAdi;
+            //            deger.UrunStok = urun.UrunStok;
+            //            deger.UrunAlisFiyati = urun.UrunAlisFiyati;
+            //            deger.UrunSatisFiyati = urun.UrunSatisFiyati;
+            //            deger.UrunGorseli = urun.UrunGorseli;
+            //            deger.UrunMarka = urun.UrunMarka;
+            //            deger.Kategoriid = urun.Kategoriid;
+            //            urun.UrunDurumu = true;
+            //            context.SaveChanges();
+            //            return RedirectToAction("UrunlerListesi");
+            //        }
+            //        return HttpNotFound();
+            //    }
+            //}
+            //return HttpNotFound();
         }
 
 

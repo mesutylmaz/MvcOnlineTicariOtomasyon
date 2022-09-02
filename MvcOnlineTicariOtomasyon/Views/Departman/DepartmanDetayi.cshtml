@@ -16,16 +16,17 @@
 
 <table class="table table-hover">
     <tr>
-        <th>Personel ID</th>
+        <th>#</th>
         <th>Personel Görseli</th>
         <th>Personel Adı</th>
         <th>Personel Soyadı</th>
         <th>Gerçekleştirilen İşlem</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.PersonelID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>
                 @if (item.PersonelGorseli == null || item.PersonelGorseli == "")
                 {

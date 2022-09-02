@@ -73,71 +73,87 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PersonelEkle([Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli)
+        public ActionResult PersonelEkle(/*[Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli*/ Personel personel)
         {
-            if (ModelState.IsValid)
+            if (Request.Files.Count > 0)
             {
-                foreach (var item in PersonelGorseli)
-                {
-                    if (item.ContentLength > 0)
-                    {
-                        var image = Path.GetFileName(item.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Images"), image);
-                        item.SaveAs(path);
-                        personel.PersonelGorseli = "/Images/" + image;
-
-                        personel.PersonelDurumu = true;
-                        context.Personeller.Add(personel);
-                        context.SaveChanges();
-                        return RedirectToAction(nameof(PersonelListesi));
-
-
-                        //string[] uzantilar = { ".jpeg", ".png", ".gif", ".jpg" };
-
-                        //for (int j = 0; j < 4; j++)
-                        //{
-                        //    for (int i = 0; i < 4; i++)
-                        //    {
-                        //        char harf = uzantilar[j].ToCharArray()[i];
-                        //        int sayac = 0;
-                        //        char[] harfler = { };
-                        //        harfler[sayac] = harf;
-                        //        sayac += 1;
-
-                        //        for (int m = 0; m < image.Length - 1; m++)
-                        //        {
-                        //            if (harfler[0] == image[m])
-                        //            {
-                        //                if (harfler[1] == image[m + 1])
-                        //                {
-                        //                    if (harfler[2] == image[m + 1])
-                        //                    {
-                        //                        if (harfler[3] == image[m + 1])
-                        //                        {
-                        //                            personel.PersonelDurumu = true;
-                        //                            context.Personeller.Add(personel);
-                        //                            context.SaveChanges();
-                        //                            return RedirectToAction(nameof(PersonelListesi));
-                        //                        }
-                        //                    }
-                        //                }
-                        //            }
-                        //        }
-
-                        //    }
-                        //}
-                    }
-                    return View();
-                }
-                //    else
-                //{
-                //    var resimYolu = "NULL";
-                //    personel.PersonelGorseli = resimYolu;
-                //    context.Personeller.Add(personel);
-                //    context.SaveChanges();
-                //}
+                string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Images/" + dosyaAdi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                personel.PersonelGorseli = "/Images/" + dosyaAdi + uzanti;
             }
-            return HttpNotFound();
+
+            personel.PersonelDurumu = true;
+            context.Personeller.Add(personel);
+            context.SaveChanges();
+            return RedirectToAction(nameof(PersonelListesi));
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in PersonelGorseli)
+            //    {
+            //        if (item.ContentLength > 0)
+            //        {
+            //            var image = Path.GetFileName(item.FileName);
+            //            var path = Path.Combine(Server.MapPath("~/Images"), image);
+            //            item.SaveAs(path);
+            //            personel.PersonelGorseli = "/Images/" + image;
+
+            //            personel.PersonelDurumu = true;
+            //            context.Personeller.Add(personel);
+            //            context.SaveChanges();
+            //            return RedirectToAction(nameof(PersonelListesi));
+
+
+            //            //string[] uzantilar = { ".jpeg", ".png", ".gif", ".jpg" };
+
+            //            //for (int j = 0; j < 4; j++)
+            //            //{
+            //            //    for (int i = 0; i < 4; i++)
+            //            //    {
+            //            //        char harf = uzantilar[j].ToCharArray()[i];
+            //            //        int sayac = 0;
+            //            //        char[] harfler = { };
+            //            //        harfler[sayac] = harf;
+            //            //        sayac += 1;
+
+            //            //        for (int m = 0; m < image.Length - 1; m++)
+            //            //        {
+            //            //            if (harfler[0] == image[m])
+            //            //            {
+            //            //                if (harfler[1] == image[m + 1])
+            //            //                {
+            //            //                    if (harfler[2] == image[m + 1])
+            //            //                    {
+            //            //                        if (harfler[3] == image[m + 1])
+            //            //                        {
+            //            //                            personel.PersonelDurumu = true;
+            //            //                            context.Personeller.Add(personel);
+            //            //                            context.SaveChanges();
+            //            //                            return RedirectToAction(nameof(PersonelListesi));
+            //            //                        }
+            //            //                    }
+            //            //                }
+            //            //            }
+            //            //        }
+
+            //            //    }
+            //            //}
+            //        }
+            //        return View();
+            //    }
+            //    //    else
+            //    //{
+            //    //    var resimYolu = "NULL";
+            //    //    personel.PersonelGorseli = resimYolu;
+            //    //    context.Personeller.Add(personel);
+            //    //    context.SaveChanges();
+            //    //}
+            //}
+            //return HttpNotFound();
 
         }
 
@@ -160,31 +176,54 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
 
-        public ActionResult PersonelGuncelle([Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli)
+        public ActionResult PersonelGuncelle(/*[Bind(Include = "PersonelID, PersonelAdi, PersonelSoyadi, PersonelGorseli, PersonelDurumu, Departman, Departmanid")] Personel personel, IEnumerable<HttpPostedFileBase> PersonelGorseli*/ Personel personel)
         {
-            if (ModelState.IsValid)
+            if (Request.Files.Count > 0)
             {
-                foreach (var item in PersonelGorseli)
-                {
-                    if (item.ContentLength > 0)
-                    {
-                        var image = Path.GetFileName(item.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Images"), image);
-                        item.SaveAs(path);
-                        personel.PersonelGorseli = "/Images/" + image;
-                        personel.PersonelDurumu = true;
-                        var deger = context.Personeller.Find(personel.PersonelID);
-                        deger.PersonelGorseli = personel.PersonelGorseli;
-                        deger.PersonelAdi = personel.PersonelAdi;
-                        deger.PersonelSoyadi = personel.PersonelSoyadi;
-                        deger.Departmanid = personel.Departmanid;
-                        context.SaveChanges();
-                        return RedirectToAction("PersonelListesi");
-                    }
-                    return HttpNotFound();
-                }
+                string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Images/" + dosyaAdi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                personel.PersonelGorseli = "/Images/" + dosyaAdi + uzanti;
             }
-            return HttpNotFound();
+
+            personel.PersonelDurumu = true;
+            var deger = context.Personeller.Find(personel.PersonelID);
+            deger.PersonelGorseli = personel.PersonelGorseli;
+            deger.PersonelAdi = personel.PersonelAdi;
+            deger.PersonelSoyadi = personel.PersonelSoyadi;
+            deger.Departmanid = personel.Departmanid;
+            context.SaveChanges();
+            return RedirectToAction("PersonelListesi");
+
+
+
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in PersonelGorseli)
+            //    {
+            //        if (item.ContentLength > 0)
+            //        {
+            //            var image = Path.GetFileName(item.FileName);
+            //            var path = Path.Combine(Server.MapPath("~/Images"), image);
+            //            item.SaveAs(path);
+            //            personel.PersonelGorseli = "/Images/" + image;
+            //            personel.PersonelDurumu = true;
+            //            var deger = context.Personeller.Find(personel.PersonelID);
+            //            deger.PersonelGorseli = personel.PersonelGorseli;
+            //            deger.PersonelAdi = personel.PersonelAdi;
+            //            deger.PersonelSoyadi = personel.PersonelSoyadi;
+            //            deger.Departmanid = personel.Departmanid;
+            //            context.SaveChanges();
+            //            return RedirectToAction("PersonelListesi");
+            //        }
+            //        return HttpNotFound();
+            //    }
+            //}
+            //return HttpNotFound();
         }
 
 

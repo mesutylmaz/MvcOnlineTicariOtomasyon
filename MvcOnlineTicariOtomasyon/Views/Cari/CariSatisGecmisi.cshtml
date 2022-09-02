@@ -14,7 +14,7 @@
 </ol>
 <table class="table table-condensed">
     <tr>
-        <th>Satış ID</th>
+        <th>#</th>
         <th>Ürün</th>
         <th>Personel</th>
         <th>Fiyat</th>
@@ -22,10 +22,11 @@
         <th>Toplam</th>
         <th>Tarih</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.SatisHareketID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>@item.Urun.UrunAdi</td>
             <td>@item.Personel.PersonelAdi @item.Personel.PersonelSoyadi</td>
             <td>@item.SatisHareketFiyati</td>

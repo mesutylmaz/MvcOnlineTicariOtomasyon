@@ -7,14 +7,15 @@
 
 <table class="table table-bordered" style="margin-top:20px;">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Departman Adı</th>
         <th>İşlemler</th>
     </tr>
+    @{int sayac = 0;}
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.DepartmanID</td>
+            <td>@{sayac += 1;} @sayac</td>
             <td>@item.DepartmanAdi</td>
             <td>
                 <a href="/Departman/DepartmaniAktifEt/@item.DepartmanID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>

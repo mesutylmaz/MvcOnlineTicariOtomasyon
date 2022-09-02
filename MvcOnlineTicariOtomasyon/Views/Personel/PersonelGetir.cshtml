@@ -15,8 +15,10 @@
         @Html.HiddenFor(x => x.PersonelID)
 
         Personel Görseli
-        @Html.EditorFor(z => z.PersonelGorseli, new { htmlAttributes = new { @class = "form-control", type = "file" } })
+        <input type="file" name="PersonelGorseli" />
         <br />
+        @*@Html.EditorFor(z => z.PersonelGorseli, new { htmlAttributes = new { @class = "form-control", type = "file" } })
+            <br />*@
 
         Personel Adı
         @Html.TextBoxFor(z => z.PersonelAdi, new { @class = "form-control" })

@@ -30,10 +30,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @{int sayac = 0;}
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.UrunID</td>
+                                <td>@{sayac += 1;} @sayac</td>
                                 <td>@item.UrunAdi</td>
                                 <td>@item.UrunMarka</td>
                                 <td>@item.UrunStok</td>
