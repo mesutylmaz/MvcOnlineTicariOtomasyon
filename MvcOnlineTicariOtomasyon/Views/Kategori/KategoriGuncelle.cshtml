@@ -8,6 +8,9 @@
 <h2>Kategori Güncelleme Sayfası</h2>
 <br />
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
 @using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
 {
     <div class="form-group">
@@ -16,6 +19,71 @@
         @Html.HiddenFor(x => x.KategoriID)
     </div>
     <br />
-    <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
+    <button class="btn" id="btn1" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
     <a href="/Kategori/KategorileriListele" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Kategori Listesi</a>
 }
+
+<script>
+    $('#btn1').on('click', function (e) {
+        Swal.fire({
+            title: 'Değişiklikleri kaydetmek istiyor musunuz?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Evet',
+            denyButtonText: 'Hayır',
+            cancelButtonText: 'Çıkış',
+            customClass: {
+                actions: 'my-actions',
+                cancelButton: 'order-3',
+                confirmButton: 'order-2',
+                denyButton: 'order-1 right-gap',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Kaydedildi!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Değişiklikler kaydedilmedi', '', 'info')
+            } else if (result.isCancelled) {
+                Swal.fire('Çıkış yapıldı', '', 'warning')
+            }
+        })
+    });
+</script>
+
+@*<script>
+    $('#btn1').on('click', function (e) {
+        e.preventDefault();
+        var self = $(this);
+        console.log(self.data('title'));
+        Swal.fire({
+            title: 'Değişiklikler kaydedilsin mi?',
+            text: 'Bunu geri alamazsınız!',
+            icon: 'warning',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Evet',
+            denyButtonText: 'Hayır',
+            cancelButtonText: 'Çıkış',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Değişiklikler Kaydedildi!',
+                    'success'
+                )
+                location.href = self.attr('href');
+            }
+            else if(result.isDenied) {
+                Swal.fire(
+                    'Değişiklikler Kaydedilmedi',
+                    'info'
+                )
+            }
+            else if (result.isCancelled) {
+                Swal.fire(
+                    'Çıkış yapıldı',
+                    'warning'
+                )
+            }
+        })
+    }
+</script>*@

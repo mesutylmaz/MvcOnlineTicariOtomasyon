@@ -246,5 +246,59 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         }
 
 
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult SatisYap(int id)
+        {
+            var deger = context.Urunler.Find(id);
+            ViewBag.UrunID = deger.UrunID;
+            ViewBag.UrunFiyati = deger.UrunSatisFiyati;
+
+            List<SelectListItem> deger1 = (from x in context.Urunler.ToList()       //Kategori Listesinden dropdown ile listeleme yapması için Linq                                                                                   sorgusunu yazdım
+                                           select new SelectListItem
+                                           {
+                                               Text = x.UrunAdi,                    //Formda seçilen kategori adını text'e basıcak
+                                               Value = x.UrunID.ToString()          //Text'e basılan Kategorinin ID'sini Value olarak saklayacak.
+                                           }).ToList();
+            ViewBag.dgr1 = deger1;
+
+            List<SelectListItem> deger2 = (from x in context.Cariler.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CariAdi + " " + x.CariSoyadi,
+                                               Value = x.CariID.ToString()
+                                           }).ToList();
+            ViewBag.dgr2 = deger2;
+
+
+            List<SelectListItem> deger3 = (from x in context.Personeller.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.PersonelAdi + " " + x.PersonelSoyadi,
+                                               Value = x.PersonelID.ToString()
+                                           }).ToList();
+            ViewBag.dgr3 = deger3;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SatisYap(SatisHareket satis)
+        {
+            satis.SatisHareketTarihi = DateTime.Parse(DateTime.Now.ToShortDateString());
+            //var deger = context.SatisHareketleri.Find(satis.SatisHareketID);
+            //deger.SatisHareketTarihi = DateTime.Parse(satis.SatisHareketTarihi.ToShortDateString());
+
+            context.SatisHareketleri.Add(satis);
+            context.SaveChanges();
+            return RedirectToAction("SatisListesi","Satis");
+        }
+
     }
 }
