@@ -84,3 +84,6 @@ C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari O
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.Mvc.dll
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.xml
 C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\PagedList.Mvc.xml
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.Migrations.insertKargoTakipKargoDetay.resources
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.GenerateResource.cache
+C:\Users\Yılmaz Ailesi\Desktop\Udemy Kursları\Asp.Net Mvc5 ile Online Ticari Otomasyon\MvcOnlineTicariOtomasyon\MvcOnlineTicariOtomasyon\bin\QRCoder.dll
