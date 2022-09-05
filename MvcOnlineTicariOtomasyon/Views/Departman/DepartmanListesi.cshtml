@@ -1,5 +1,8 @@
 ﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Departman>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Departman>
+@*@model List<Departman>*@
 @{
     ViewBag.Title = "DepartmanListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -25,5 +28,15 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("DepartmanListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Departman/DepartmanEkle" class="btn btn-info">Departman Ekle</a>
 <a href="/Departman/PasifDepartmanListesi" class="btn btn-info" style="background-color:olive; color:aliceblue;">Pasif Departman Listesi</a>

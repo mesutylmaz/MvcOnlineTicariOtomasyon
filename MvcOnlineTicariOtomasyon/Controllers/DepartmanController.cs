@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         Context context = new Context();
 
         // GET: Departman
-        public ActionResult DepartmanListesi()
+        public ActionResult DepartmanListesi(int sayfa = 1)
         {
-            var degerler = context.Departmanlar.Where(x=>x.DepartmanDurumu==true).ToList();
+            var degerler = context.Departmanlar.Where(x=>x.DepartmanDurumu==true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 4 kategoriyi göster;
             return View(degerler);
         }
 

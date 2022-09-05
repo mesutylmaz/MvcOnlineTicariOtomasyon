@@ -1,5 +1,8 @@
 ﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Urun>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Urun>
+
 @{
     ViewBag.Title = "UrunlerListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -7,11 +10,11 @@
 
 <br />
 
-@using (Html.BeginForm("UrunlerListesi", "Urun", FormMethod.Get)) 
-{ 
+@using (Html.BeginForm("UrunlerListesi", "Urun", FormMethod.Get))
+{
     <p>
         Ürün Adı : @Html.TextBox("aranacakKelime")
-        <input type="submit"value="Ara" />
+        <input type="submit" value="Ara" />
     </p>
 }
 
@@ -49,13 +52,23 @@
                 }
             </td>
             <td>
-                <a href="/Urun/UrunGuncelle/@item.UrunID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
-                <a href="/Urun/UrunuPasifYap/@item.UrunID" class="btn" style="background-color:firebrick; color:aliceblue">Sil</a>
-                <a href="/Urun/SatisYap/@item.UrunID" class="btn" style="background-color:seagreen; color: aliceblue">Satış Yap</a>
+                <a href="/Urun/UrunGuncelle/@item.UrunID" class="btn" style="background-color: darkorange; color: aliceblue;">Güncelle</a>
+                <a href="/Urun/UrunuPasifYap/@item.UrunID" class="btn" style="background-color: firebrick; color: aliceblue;">Sil</a>
+                <a href="/Urun/SatisYap/@item.UrunID" class="btn" style="background-color: seagreen; color: aliceblue; width:">Satış Yap</a>
             </td>
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("UrunlerListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Urun/UrunEkle" class="btn btn-info">Ürün Ekle</a>
 <a href="/Urun/PasifUrunListesi" class="btn btn-info" style="background-color:olive; color:aliceblue;">Pasif Ürün Listesi</a>
 

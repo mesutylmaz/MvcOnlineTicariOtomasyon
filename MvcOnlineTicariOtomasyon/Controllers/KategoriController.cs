@@ -22,7 +22,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         //}
         public ActionResult KategorileriListele(int sayfa = 1)      //Listelemeyi 1. sayfa için yap
         {
-            var degerler = context.Kategoriler.ToList().ToPagedList(sayfa, 4);      //ilgili sayfada sadece ilk 4 kategoriyi göster
+            var degerler = context.Kategoriler.ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 4 kategoriyi göster
             return View(degerler);
         }
 

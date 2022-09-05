@@ -21,14 +21,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         //    return View(urunler);
         //}
 
-        public ActionResult UrunlerListesi(string aranacakKelime)
+        public ActionResult UrunlerListesi(string aranacakKelime, int sayfa=1)
         {
+
+
             var urunler = from x in context.Urunler select x;
             if (!string.IsNullOrEmpty(aranacakKelime))
             {
                 urunler = urunler.Where(y => y.UrunAdi.Contains(aranacakKelime) || y.UrunMarka.Contains(aranacakKelime));
             }
-            return View(urunler.ToList());
+
+
+            return View(urunler.ToList().ToPagedList(sayfa,10));
         }
 
 
