@@ -12,6 +12,7 @@ namespace MvcOnlineTicariOtomasyon
     {
         protected void Application_Start()
         {
+            GlobalFilters.Filters.Add(new AuthorizeAttribute());        //Bütün Controller için Authorize uygulanacak. Girişsiz Url'den gezinme engellenecek
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

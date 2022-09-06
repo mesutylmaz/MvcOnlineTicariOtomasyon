@@ -105,5 +105,41 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             context.SaveChanges();
             return RedirectToAction("KategorileriListele");
         }
+
+
+
+
+
+
+
+
+
+
+        public ActionResult CascadingKategoriUrun()
+        {
+            Cascading cas = new Cascading();
+            cas.Kategoriler = new SelectList(context.Kategoriler, "KategoriID", "KategoriAdi");
+            cas.Urunler = new SelectList(context.Urunler, "UrunID", "UrunAdi");
+
+            return View(cas);
+        }
+
+
+
+
+        public JsonResult KategoriyeGoreUrunGetir(int p)
+        {
+            var urunList = (from x in context.Urunler
+                            join y in context.Kategoriler
+                            on x.Kategori.KategoriID equals y.KategoriID
+                            where x.Kategori.KategoriID == p
+                            select new
+                            {
+                                Text = x.UrunAdi,
+                                Value = x.UrunID.ToString()
+                            }).ToList();
+
+            return Json(urunList, JsonRequestBehavior.AllowGet);
+        }
     }
 }

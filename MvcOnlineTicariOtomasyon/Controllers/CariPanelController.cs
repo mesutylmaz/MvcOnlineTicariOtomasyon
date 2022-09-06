@@ -8,13 +8,14 @@ using System.Web.Security;          //FormsAuthentication için
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
+    //[Authorize]         //WebConfig'deki authentication kısıtlaması bu controllerda uygulanacak.
     public class CariPanelController : Controller
     {
 
         Context context = new Context();
 
         // GET: CariPanel
-        [Authorize]     //WebConfig'deki authentication kısıtlaması bu controllerda uygulanacak.
+        //[Authorize]     //Action üzerine Authorize yazarak, Sadece o action'a Url'den erişimi engelleyebiliriz
         public ActionResult Index()
         {
             var mail = (string)Session["CariMaili"];        //Cari'nin mailini Session ile sakla(taşı)
@@ -47,7 +48,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult Siparislerim()
         {
             var mail = (string)Session["CariMaili"];
@@ -69,7 +70,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult GelenMesajlar()
         {
             //var musteriler = context.Cariler.Where(
@@ -97,7 +98,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult GidenMesajlar()
         {
             //var musteriler = context.Cariler.Where(
@@ -124,7 +125,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult MesajDetay(int id)
         {
             var degerler = context.Mesajlar.Where(x => x.MesajID == id).ToList();
@@ -143,7 +144,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         [HttpGet]
         public ActionResult YeniMesajlar()
         {
@@ -158,7 +159,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View();
         }
 
-        [Authorize]
+       
         [HttpPost]
         public ActionResult YeniMesajlar(Mesaj mesaj)
         {
@@ -176,7 +177,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+
         public ActionResult KargoTakip(string aranacakKelime)
         {
             var kargolar = from x in context.KargoDetaylari select x;
@@ -189,7 +190,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult CariKargoTakip(string id)
         {
             var degerler = context.KargoTakipleri.Where(x => x.KargoTakipKodu == id).ToList();
@@ -214,7 +215,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        [Authorize]
+        
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

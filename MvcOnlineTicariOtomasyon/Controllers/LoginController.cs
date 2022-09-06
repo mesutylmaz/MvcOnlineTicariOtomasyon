@@ -8,6 +8,7 @@ using System.Web.Security;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
+    [AllowAnonymous]        //Global.asax'daki Authorize kısıtını buraya uygulamasın, çünkü buraya herkes erişebilsin istiyoruz.
     public class LoginController : Controller
     {
 
