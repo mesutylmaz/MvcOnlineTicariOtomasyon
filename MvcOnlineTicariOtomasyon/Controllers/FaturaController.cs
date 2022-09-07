@@ -102,5 +102,51 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
+
+
+
+
+
+
+        public ActionResult DinamikFaturalar()
+        {
+            DinamikFatura dinamikFatura = new DinamikFatura();
+            dinamikFatura.deger1 = context.Faturalar.ToList();
+            dinamikFatura.deger2 = context.FaturaKalemleri.ToList();
+            return View(dinamikFatura);
+        }
+
+
+
+        public ActionResult FaturayiKaydet(string FaturaSeriNo, string FaturaSiraNo, DateTime FaturaTarih, string FaturaVergiDairesi, string FaturaSaat, string FaturaTeslimEden, string FaturaTeslimAlan, string ToplamTutar, FaturaKalem [] kalemler)
+        {
+            Fatura fatura = new Fatura();
+            fatura.FaturaSeriNo = FaturaSeriNo;
+            fatura.FaturaSiraNo = FaturaSiraNo;
+            fatura.FaturaTarih = FaturaTarih;
+            fatura.FaturaVergiDairesi = FaturaVergiDairesi;
+            fatura.FaturaSaat = FaturaSaat;
+            fatura.FaturaTeslimEden = FaturaTeslimEden;
+            fatura.FaturaTeslimAlan = FaturaTeslimAlan;
+            fatura.ToplamTutar = decimal.Parse(ToplamTutar);
+            context.Faturalar.Add(fatura);
+
+            foreach (var item in kalemler)
+            {
+                FaturaKalem kalem = new FaturaKalem();
+                kalem.FaturaKalemAciklama = item.FaturaKalemAciklama;
+                kalem.FaturaKalemBirimFiyat = item.FaturaKalemBirimFiyat;
+                kalem.FaturaKalemTutar = item.FaturaKalemTutar;
+                kalem.Faturaid = item.Faturaid;
+                kalem.FaturaKalemMiktar = item.FaturaKalemMiktar;
+                context.FaturaKalemleri.Add(kalem);
+            }
+
+            context.SaveChanges();
+            return Json("Kayıt işlemi başarılı.", JsonRequestBehavior.AllowGet);
+        }
     }
 }

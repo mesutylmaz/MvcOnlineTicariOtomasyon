@@ -176,12 +176,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
+        //Ab
 
-
-        public ActionResult KargoTakip(string aranacakKelime)
+        public ActionResult KargoTakip(string aranacakKelime)       //ab
         {
+            var deger1 = aranacakKelime.ToLower().Replace('ı','i');          //AB
+
+
+           
+
             var kargolar = from x in context.KargoDetaylari select x;
-            kargolar = kargolar.Where(y => y.TakipKodu.Contains(aranacakKelime) || y.Personel.Contains(aranacakKelime) || y.Alici.Contains(aranacakKelime));
+            kargolar = kargolar.Where(y => y.TakipKodu.ToLower().Replace('ı','i').Contains(deger1));
+
 
             return View(kargolar.ToList());
         }

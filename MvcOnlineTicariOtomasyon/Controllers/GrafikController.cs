@@ -35,12 +35,14 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        Context context = new Context();
+        
 
 
 
         public ActionResult Index3()
         {
+            Context context = new Context();
+
             ArrayList xDegeri = new ArrayList();
             ArrayList yDegerleri = new ArrayList();
 
@@ -77,6 +79,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public List<Sinif1> UrunList()
         {
+            Context context = new Context();
+
             List<Sinif1> snf = new List<Sinif1>();
             snf.Add(new Sinif1(){
                 UrunAd = "Bilgisayar",
@@ -119,15 +123,16 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public List<Sinif2> UrunList2()
         {
+            Context context = new Context();
             List<Sinif2> snf = new List<Sinif2>();
-            using (var c = new Context())
-            {
-                snf = c.Urunler.Select(x => new Sinif2
+            //using (var c = new Context())
+            //{
+                snf = context.Urunler.Select(x => new Sinif2
                 {
                     urunAd = x.UrunAdi,
                     stok = x.UrunStok
                 }).ToList();
-            }
+            //}
             
             return snf;
         }
