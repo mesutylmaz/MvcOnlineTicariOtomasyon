@@ -191,6 +191,7 @@
     <Compile Include="Models\Siniflar\Urun.cs" />
     <Compile Include="Models\Siniflar\YapilacakListesi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.weblogin\css\font-awesome.css" />
@@ -2926,6 +2927,7 @@
     <Content Include="Views\Error\PageError403.cshtml" />
     <Content Include="Views\Kategori\CascadingKategoriUrun.cshtml" />
     <Content Include="Views\Fatura\DinamikFaturalar.cshtml" />
+    <Content Include="Views\Personel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

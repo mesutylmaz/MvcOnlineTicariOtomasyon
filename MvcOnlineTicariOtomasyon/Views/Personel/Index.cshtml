@@ -1,32 +1,4 @@
-﻿@*@model MvcOnlineTicariOtomasyon.Models.Siniflar.Cari
-    @{
-        ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/_CariLayout.cshtml";
-    }*@
-@*<br />
-    <h2>Cari Bilgi Paneli</h2>
-    <br />
-    @using (Html.BeginForm("Index", "CariPanel", FormMethod.Post))
-    {
-    <table class="table table-hover">
-        <tr>
-            <td style="background-color:aquamarine; color:brown"><label><b>Mail Adresi : @HttpContext.Current.User.Identity.Name</b></label></td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(z => z.CariAdi, new { @class = "form-control", @readonly = "readonly" })</td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(z => z.CariSoyadi, new { @class = "form-control", @readonly = "readonly" })</td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(z => z.CariSehir, new { @class = "form-control", @readonly = "readonly" })</td>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(z => z.CariSifresi, new { @class = "form-control", @readonly = "readonly" })</td>
-        </tr>
-    </table>
-    <button class="btn btn-info">Bilgilerimi Güncelle</button>
-    }*@
+﻿
 
 
 @using MvcOnlineTicariOtomasyon.Models.Siniflar
@@ -48,7 +20,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Cari Profili</title>
+    <title>Personel Profili</title>
 
     <!-- Tell the browser to be responsive to screen width -->
 
@@ -109,123 +81,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-3">
-
-                        <!-- Profile Image -->
-
-                        <div class="card card-primary card-outline">
-
-                            <div class="card-body box-profile">
-
-                                <div class="text-center">
-
-                                    <img class="profile-user-img img-fluid img-circle"
-                                         src="~/AdminLTE-3.0.4/dist/img/user4-128x128.jpg"
-                                         alt="Profil Fotoğrafı">
-
-                                </div>
-
-                                    <h3 class="profile-username text-center">@ViewBag.AdSoyad</h3>
-
-                                    <p class="text-muted text-center">@ViewBag.Meslek</p>
-
-
-                                <ul class="list-group list-group-unbordered mb-3">
-
-                                    <li class="list-group-item">
-
-                                        <b>Toplam Satış</b> <a class="float-right">@ViewBag.ToplamSatis</a>
-
-                                    </li>
-
-                                    <li class="list-group-item">
-
-                                        <b>Satılan Ürün Sayısı</b> <a class="float-right">@ViewBag.SatilanToplamUrunSayisi</a>
-
-                                    </li>
-
-                                    <li class="list-group-item">
-
-                                        <b>Toplam Satış Tutarı</b> <a class="float-right">@ViewBag.ToplamTutar ₺</a>
-
-                                    </li>
-
-                                </ul>
-
-                                <a href="/CariPanel/KargoTakip/" class="btn btn-primary btn-block" style="background-color:cornflowerblue"><b>Kargo Takip</b></a>
-
-                            </div>
-
-                            <!-- /.card-body -->
-
-                        </div>
-
-                        <!-- /.card -->
-                        <!-- About Me Box -->
-
-                        <div class="card card-fuchsia">
-                            <div class="card-header" style="background-color:khaki; color:black">
-
-                                <h3 class="card-title"><b>Hakkımda</b></h3>
-
-                            </div>
-
-                            <!-- /.card-header -->
-
-                                <div class="card-body">
-
-                                    <strong><i class="fas fa-book mr-1"></i> Eğitim Bilgisi</strong>
-
-                                    <p class="text-muted">
-
-                                        Üniversite : @ViewBag.Egitim
-
-                                    </p>
-
-                                    <hr>
-
-                                    <strong><i class="fas fa-map-marker-alt mr-1"></i> İletişim Bilgisi</strong>
-
-                                    <p class="text-muted">@*@item.Adres*@E-Mail : @ViewBag.mail</p>
-                                    <p class="text-muted">Şehir : @ViewBag.Sehir</p>
-
-                                    <hr>
-
-                                    <strong><i class="fas fa-pencil-alt mr-1"></i> Yetenekler</strong>
-
-                                    <p class="text-muted">
-
-                                        <span class="tag tag-danger">UI Design</span>
-
-                                        <span class="tag tag-success">Coding</span>
-
-                                        <span class="tag tag-info">Javascript</span>
-
-                                        <span class="tag tag-warning">PHP</span>
-
-                                        <span class="tag tag-primary">Node.js</span>
-
-                                    </p>
-
-                                    <hr>
-
-                                    @*<strong><i class="far fa-file-alt mr-1"></i> Notlar</strong>
-
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>*@
-
-                                </div>
-
-                            <!-- /.card-body -->
-
-                        </div>
-
-                        <!-- /.card -->
-
-                    </div>
-
-                    <!-- /.col -->
-
-                    <div class="col-md-9">
+                    <div class="col-md-12">
 
                         <div class="card">
 
@@ -276,7 +132,7 @@
 
                                                 <p>
 
-                                                   @item.Icerik
+                                                    @item.Icerik
 
                                                 </p>
 
@@ -335,20 +191,19 @@
     </div>
 
     <!-- /.content-wrapper -->
-
     @*<footer class="main-footer">
 
-        <div class="float-right d-none d-sm-block">
+            <div class="float-right d-none d-sm-block">
 
-            <b>Version</b> 3.0.4
+                <b>Version</b> 3.0.4
 
-        </div>
+            </div>
 
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
 
-        reserved.
+            reserved.
 
-    </footer>*@
+        </footer>*@
 
     <!-- Control Sidebar -->
 
@@ -379,3 +234,4 @@
 </body>
 
 </html>
+

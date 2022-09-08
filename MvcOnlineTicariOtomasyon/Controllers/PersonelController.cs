@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -238,5 +239,26 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var personeller = context.Personeller.ToList();
             return View(personeller);
         }
+
+
+
+
+
+
+
+
+
+
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();      //İstekleri terk et
+            return RedirectToAction("Index", "Login");
+        }
+
+
+
+
     }
 }
