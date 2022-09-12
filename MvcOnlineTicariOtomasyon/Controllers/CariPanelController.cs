@@ -180,13 +180,13 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult KargoTakip(string aranacakKelime)       //ab
         {
-            var deger1 = aranacakKelime.ToLower().Replace('ı','i');          //AB
+            //var deger1 = aranacakKelime.ToLower().Replace('ı','i');          //AB
 
-
-           
+            //var kargolar = from x in context.KargoDetaylari select x;
+            //kargolar = kargolar.Where(y => y.TakipKodu.ToLower().Replace('ı','i').Contains(deger1));
 
             var kargolar = from x in context.KargoDetaylari select x;
-            kargolar = kargolar.Where(y => y.TakipKodu.ToLower().Replace('ı','i').Contains(deger1));
+            kargolar = kargolar.Where(y => y.TakipKodu.Contains(aranacakKelime));
 
 
             return View(kargolar.ToList());

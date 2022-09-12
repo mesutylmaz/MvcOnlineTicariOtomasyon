@@ -1,5 +1,80 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Fatura>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<Fatura>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered" style="margin-top:20px;">
+        <tr>
+            <th>#</th>
+            <th>Seri No</th>
+            <th>Sıra No</th>
+            <th>Vergi Dairesi</th>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Toplam Tutar</th>
+            <th>İşlemler</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>@item.FaturaSeriNo</td>
+                <td>@item.FaturaSiraNo</td>
+                <td>@item.FaturaVergiDairesi</td>
+                <td>@item.FaturaTarih.ToShortDateString()</td>
+                <td>@item.FaturaSaat</td>
+                <td>@item.ToplamTutar ₺</td>
+                <td>
+                    <a href="/Fatura/FaturaDetay/@item.FaturaID" class="btn" style="background-color:forestgreen; color:aliceblue">Detay</a>
+                    <a href="/Fatura/FaturaGetir/@item.FaturaID" class="btn" style="background-color:darkorange; color:aliceblue">Güncelle</a>
+                    <button type="button" class="btn btn-info" style="background-color:peru; color:aliceblue;" data-toggle="modal" data-target="#Modal1">Seri No-Sıra No</button>
+                    <a href="/Fatura/FaturaKalemiEkle/@item.FaturaID" class="btn btn-info" style="background-color: darkviolet; color: aliceblue;">Yeni Kalem Ekle</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Fatura/FaturaEkle" class="btn btn-info">Yeni Fatura Ekle</a>
+    <br /><br />
+
+
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Fatura Seri ve Sıra No</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Seri No</th>
+                            <th>Sıra No</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FaturaSeriNo</td>
+                                <td>@item.FaturaSiraNo</td>
+                            </tr>
+                        }
+                    </table>
+                    <button type="button" class="btn" style="background-color:firebrick; color:aliceblue;" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Fatura>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -36,8 +111,19 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Fatura/FaturaEkle" class="btn btn-info">Yeni Fatura Ekle</a>
-<br /><br />
+<br />
+<br />
 
 
 <div class="modal" id="Modal1">

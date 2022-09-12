@@ -1,5 +1,59 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Urun>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<Urun>
+    @{
+        ViewBag.Title = "PasifUrunListesi";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered" style="margin-top:20px;">
+        <tr>
+            <th>#</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Markası</th>
+            <th>Ürün Stoğu</th>
+            <th>Ürün Alış Fiyatı</th>
+            <th>Ürün Satış Fiyatı</th>
+            <th>Ürün Kategorisi</th>
+            <th>Ürün Görseli</th>
+            <th>İşlemler</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>@item.UrunAdi</td>
+                <td>@item.UrunMarka</td>
+                <td>@item.UrunStok</td>
+                <td>@item.UrunAlisFiyati ₺</td>
+                <td>@item.UrunSatisFiyati ₺</td>
+                <td>@item.Kategori.KategoriAdi</td>
+                <td>
+                    @if (item.UrunGorseli == null || item.UrunGorseli == "")
+                    {
+                        <img src="~/Images/resim-yok.png" width="120" height="80" />
+                    }
+                    else
+                    {
+                        <img src="@item.UrunGorseli" width="120" height="80" />
+                    }
+                </td>
+                <td>
+                    <a href="/Urun/UrunuAktifYap/@item.UrunID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Ürün Listesi</a>*@
+
+
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Urun>
 @{
     ViewBag.Title = "PasifUrunListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -44,4 +98,14 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("PasifUrunListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Urun/UrunlerListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Ürün Listesi</a>

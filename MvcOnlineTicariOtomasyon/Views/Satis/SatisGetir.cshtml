@@ -22,16 +22,16 @@
     @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
     <br />
     @Html.Label("Adet")
-    @Html.TextBoxFor(z => z.SatisHareketAdedi, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.SatisHareketAdedi, new { @class = "form-control", @type = "number" })
     <br />
     @Html.Label("Fiyat")
-    @Html.TextBoxFor(z => z.SatisHareketFiyati, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.SatisHareketFiyati, new { @class = "form-control", @type = "number" })
     <br />
     @Html.Label("Toplam Tutar")
-    @Html.TextBoxFor(z => z.SatisHareketToplamTutari, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.SatisHareketToplamTutari, new { @class = "form-control", @type = "number" })
     <br />
     @Html.Label("Tarih")
-    @Html.TextBoxFor(z => z.SatisHareketTarihi, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.SatisHareketTarihi, new { @class = "form-control", @type = "date" })
     <br />
     <button class="btn" style="background-color:#a725a4; color:antiquewhite">Değişiklikleri Kaydet</button>
     <a href="/Satis/SatisListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Satış Listesi</a>

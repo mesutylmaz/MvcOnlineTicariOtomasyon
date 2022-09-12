@@ -1,5 +1,42 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Cari>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<Cari>
+    @{
+        ViewBag.Title = "PasifCariListesi";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered" style="margin-top:20px;">
+        <tr>
+            <th>#</th>
+            <th>Cari Adı</th>
+            <th>Cari Soyadı</th>
+            <th>Cari Maili</th>
+            <th>Cari Şehir</th>
+            <th>İşlemler</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>@item.CariAdi</td>
+                <td>@item.CariSoyadi</td>
+                <td>@item.CariMaili</td>
+                <td>@item.CariSehir</td>
+                <td>
+                    <a href="/Cari/CariyiAktifEt/@item.CariID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Cari Listesi</a>*@
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Cari>
 @{
     ViewBag.Title = "PasifCariListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -29,4 +66,15 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("PasifCariListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
+
 <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Cari Listesi</a>

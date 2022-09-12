@@ -10,5 +10,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
     {
         public IEnumerable<SelectListItem> Kategoriler { get; set; }
         public IEnumerable<SelectListItem> Urunler { get; set; }
+        public IEnumerable<SelectListItem> UrunFiyatlari { get; set; }
+        public IEnumerable<Fatura> deger1 { get; set; }
     }
 }

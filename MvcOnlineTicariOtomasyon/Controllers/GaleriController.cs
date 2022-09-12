@@ -15,7 +15,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         // GET: Image
         public ActionResult Index()
         {
-            var degerler = content.Urunler.ToList();
+            var degerler = content.Urunler.Where(x=>x.UrunDurumu==true).ToList();
             return View(degerler);
         }
     }

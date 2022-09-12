@@ -9,20 +9,20 @@
 <br />
 
 <form class="form-group" method="post">
-    Açıklama
+    Ürün Adı
     @Html.TextBoxFor(x => x.FaturaKalemAciklama, new { @class = "form-control" })
     <br />
     @Html.Label("Miktar")
-    @Html.TextBoxFor(x => x.FaturaKalemMiktar, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaKalemMiktar, new { @class = "form-control", @type = "number" })
     <br />
     @Html.Label("Birim Fiyat")
-    @Html.TextBoxFor(x => x.FaturaKalemBirimFiyat, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaKalemBirimFiyat, new { @class = "form-control", @type = "number" })
     <br />
     Tutar
-    @Html.TextBoxFor(x => x.FaturaKalemTutar, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaKalemTutar, new { @class = "form-control", @type = "number" })
     <br />
     Fatura
-    @Html.TextBoxFor(x => x.Faturaid, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.Faturaid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
     <br />
     <button class="btn btn-success">Kaydet</button>
     <a href="/Fatura/Index" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Fatura Listesi</a>

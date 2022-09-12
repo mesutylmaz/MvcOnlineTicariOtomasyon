@@ -1,5 +1,51 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Personel>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<Personel>
+    @{
+        ViewBag.Title = "PasifPersonelListesi";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered" style="margin-top:20px;">
+        <tr>
+            <th>#</th>
+            <th>Personel Görseli</th>
+            <th>Personel Adı</th>
+            <th>Personel Soyadı</th>
+            <th>Departman</th>
+            <th>İşlemler</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>
+                    @if (item.PersonelGorseli == null || item.PersonelGorseli == "")
+                    {
+                        <img src="~/Images/resim-yok.png" width="120" height="80" />
+                    }
+                    else
+                    {
+                        <img src="@item.PersonelGorseli" width="120" height="80" />
+                    }
+                </td>
+                <td>@item.PersonelAdi</td>
+                <td>@item.PersonelSoyadi</td>
+                <td>@item.Departman.DepartmanAdi</td>
+                <td>
+                    <a href="/Personel/PersoneliAktifYap/@item.PersonelID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Personel/PersonelListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Personel Listesi</a>*@
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Personel>
 @{
     ViewBag.Title = "PasifPersonelListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -38,4 +84,14 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("PasifPersonelListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Personel/PersonelListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Aktif Personel Listesi</a>

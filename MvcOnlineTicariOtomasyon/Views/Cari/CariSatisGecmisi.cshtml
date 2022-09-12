@@ -1,5 +1,52 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<SatisHareket>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<SatisHareket>
+    @{
+        ViewBag.Title = "CariSatisGecmisi";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <br />
+    <h2>Cari Satış Geçmişi</h2>
+    <br />
+
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Cari Adı : @ViewBag.Cari</li>
+    </ol>
+    <table class="table table-condensed">
+        <tr>
+            <th>#</th>
+            <th>Ürün</th>
+            <th>Personel</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Toplam</th>
+            <th>Tarih</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>@item.Urun.UrunAdi</td>
+                <td>@item.Personel.PersonelAdi @item.Personel.PersonelSoyadi</td>
+                <td>@item.SatisHareketFiyati</td>
+                <td>@item.SatisHareketAdedi</td>
+                <td>@item.SatisHareketToplamTutari</td>
+                <td>@item.SatisHareketTarihi</td>
+                <td><a href="#" class="btn btn-default" style="background-color:mediumslateblue; color:aliceblue">Yazdır</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Cari Listesi</a>*@
+
+
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<SatisHareket>
 @{
     ViewBag.Title = "CariSatisGecmisi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -29,12 +76,22 @@
             <td>@{sayac += 1;} @sayac</td>
             <td>@item.Urun.UrunAdi</td>
             <td>@item.Personel.PersonelAdi @item.Personel.PersonelSoyadi</td>
-            <td>@item.SatisHareketFiyati</td>
+            <td>@item.SatisHareketFiyati ₺</td>
             <td>@item.SatisHareketAdedi</td>
-            <td>@item.SatisHareketToplamTutari</td>
-            <td>@item.SatisHareketTarihi</td>
+            <td>@item.SatisHareketToplamTutari ₺</td>
+            <td>@item.SatisHareketTarihi.ToShortDateString()</td>
             <td><a href="#" class="btn btn-default" style="background-color:mediumslateblue; color:aliceblue">Yazdır</a></td>
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("CariSatisGecmisi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Kategori Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Cari/CariListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Cari Listesi</a>

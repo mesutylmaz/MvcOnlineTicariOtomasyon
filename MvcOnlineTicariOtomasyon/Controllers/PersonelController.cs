@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,18 +17,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
         // GET: Personel
-        public ActionResult PersonelListesi()
+        public ActionResult PersonelListesi(int sayfa = 1)
         {
-            var degerler = context.Personeller.Where(x => x.PersonelDurumu == true).ToList();
+            var degerler = context.Personeller.Where(x => x.PersonelDurumu == true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 Personeli göster
             return View(degerler);
         }
 
 
 
 
-        public ActionResult PasifPersonelListesi()
+        public ActionResult PasifPersonelListesi(int sayfa =1)
         {
-            var degerler = context.Personeller.Where(x => x.PersonelDurumu == false).ToList();
+            var degerler = context.Personeller.Where(x => x.PersonelDurumu == false).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 Personeli göster
             return View(degerler);
         }
 

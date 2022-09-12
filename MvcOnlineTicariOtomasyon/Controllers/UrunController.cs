@@ -25,7 +25,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
 
 
-            var urunler = from x in context.Urunler select x;
+            var urunler = from x in context.Urunler where x.UrunDurumu==true select x;
             if (!string.IsNullOrEmpty(aranacakKelime))
             {
                 urunler = urunler.Where(y => y.UrunAdi.Contains(aranacakKelime) || y.UrunMarka.Contains(aranacakKelime));
@@ -42,10 +42,16 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        public ActionResult PasifUrunListesi()
+        public ActionResult PasifUrunListesi(string aranacakKelime, int sayfa = 1)
         {
-            var degerler = context.Urunler.Where(x => x.UrunDurumu == false).ToList();
-            return View(degerler);
+            var urunler = from x in context.Urunler where x.UrunDurumu == false select x;
+            if (!string.IsNullOrEmpty(aranacakKelime))
+            {
+                urunler = urunler.Where(y => y.UrunAdi.Contains(aranacakKelime) || y.UrunMarka.Contains(aranacakKelime));
+            }
+
+
+            return View(urunler.ToList().ToPagedList(sayfa, 10));
         }
 
 

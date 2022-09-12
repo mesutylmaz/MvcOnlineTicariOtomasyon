@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         Context context = new Context();
         // GET: Fatura
-        public ActionResult Index()
+        public ActionResult Index(int sayfa =1)
         {
-            var liste = context.Faturalar.ToList();
+            var liste = context.Faturalar.ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 faturayı göster
             return View(liste);
         }
 
@@ -25,6 +26,22 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult FaturaEkle()
         {
+            List<SelectListItem> deger1 = (from x in context.Personeller.ToList()       //Kategori Listesinden dropdown ile listeleme yapması için Linq                                                                                   sorgusunu yazdım
+                                           select new SelectListItem
+                                           {
+                                               Text = x.PersonelAdi + " " + x.PersonelSoyadi,                    //Formda seçilen kategori adını text'e basıcak
+                                               Value = x.PersonelID.ToString()          //Text'e basılan Kategorinin ID'sini Value olarak saklayacak.
+                                           }).ToList();
+            ViewBag.dgr1 = deger1;
+
+            List<SelectListItem> deger2 = (from x in context.Cariler.ToList()       //Kategori Listesinden dropdown ile listeleme yapması için Linq                                                                                   sorgusunu yazdım
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CariAdi + " " + x.CariSoyadi,                    //Formda seçilen kategori adını text'e basıcak
+                                               Value = x.CariID.ToString()          //Text'e basılan Kategorinin ID'sini Value olarak saklayacak.
+                                           }).ToList();
+            ViewBag.dgr2 = deger2;
+
             return View();
         }
 
@@ -45,6 +62,22 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult FaturaGetir(int id)
         {
+            List<SelectListItem> deger1 = (from x in context.Personeller.ToList()       //Kategori Listesinden dropdown ile listeleme yapması için Linq                                                                                   sorgusunu yazdım
+                                           select new SelectListItem
+                                           {
+                                               Text = x.PersonelAdi + " " + x.PersonelSoyadi,                    //Formda seçilen kategori adını text'e basıcak
+                                               Value = x.PersonelID.ToString()          //Text'e basılan Kategorinin ID'sini Value olarak saklayacak.
+                                           }).ToList();
+            ViewBag.dgr1 = deger1;
+
+            List<SelectListItem> deger2 = (from x in context.Cariler.ToList()       //Kategori Listesinden dropdown ile listeleme yapması için Linq                                                                                   sorgusunu yazdım
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CariAdi + " " + x.CariSoyadi,                    //Formda seçilen kategori adını text'e basıcak
+                                               Value = x.CariID.ToString()          //Text'e basılan Kategorinin ID'sini Value olarak saklayacak.
+                                           }).ToList();
+            ViewBag.dgr2 = deger2;
+
             var fatura = context.Faturalar.Find(id);
             return View("FaturaGetir", fatura);
         }
@@ -79,7 +112,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult FaturaDetay(int id)
         {
-            var degerler = context.FaturaKalemleri.Where(x => x.Faturaid == id).ToList();
+            var degerler = context.FaturaKalemleri.Where(x => x.Faturaid == id).ToList().ToPagedList(id, 10);      //ilgili sayfada sadece ilk 10 fatura detayını göster
             return View(degerler);
         }
 

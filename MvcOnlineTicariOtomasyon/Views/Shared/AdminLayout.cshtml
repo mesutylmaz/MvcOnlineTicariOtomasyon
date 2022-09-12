@@ -17,8 +17,8 @@
     <script src="https://icons.getbootstrap.com/assets/icons/card-list.svg"></script>
 </head>
 <body>
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Ticari Otomasyon</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #32cd32 ">
+        <a class="navbar-brand" href="/Kategori/KategorileriListele">Ticari Otomasyon</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button><!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -42,10 +42,11 @@
             </li>
         </ul>
     </nav>
-    <div id="layoutSidenav">
+    <div id="layoutSidenav" style="background-color: lightgreen ">
+        
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
+                <div class="sb-sidenav-menu" style="background-color: #38aa43 ">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">İşlem Menüsü</div>
                         <a class="nav-link" href="/Kategori/KategorileriListele">
@@ -55,6 +56,10 @@
                         <a class="nav-link" href="/Urun/UrunlerListesi">
                             <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
                             Ürünler
+                        </a>
+                        <a class="nav-link" href="/Galeri/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-camera-retro"></i></div>
+                            Ürün Galerisi
                         </a>
                         <a class="nav-link" href="/Departman/DepartmanListesi">
                             <div class="sb-nav-link-icon"><i class="fas fa-sitemap"></i></div>
@@ -112,10 +117,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-object-group"></i></div>
                             Dinamik Faturalar
                         </a>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-minus-circle"></i></div>
-                            Duyurular
-                        </a>
+                        @*<a class="nav-link" href="index.html">
+            <div class="sb-nav-link-icon"><i class="fas fa-minus-circle"></i></div>
+            Duyurular
+        </a>*@
                         <a class="nav-link" href="/Kargo/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Kargolar
@@ -132,10 +137,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-signal"></i></div>
                             İstatistikler
                         </a>
-                        <a class="nav-link" href="/Galeri/Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-camera-retro"></i></div>
-                            Galeri
-                        </a>
                         <a class="nav-link" href="/UrunDetay/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
                             Ürün Detay
@@ -147,12 +148,16 @@
                                 Hızlı Bakış
                             </a>
                         }
+                        <a class="nav-link" href="/Personel/LogOut">
+                            <div class="sb-nav-link-icon" style="color:aliceblue"><i class="fas fa-sign-out-alt" style="color:aliceblue"></i></div>
+                            Çıkış
+                        </a>
                     </div>
                 </div>
                 @*<div class="sb-sidenav-footer">
-                        <div class="small">Olarak giriş yaptı:</div>
-                        Ticari Otomasyon
-                    </div>*@
+                    <div class="small">Olarak giriş yaptı:</div>
+                    Ticari Otomasyon
+                </div>*@
             </nav>
         </div>
         <div id="layoutSidenav_content">
@@ -162,17 +167,17 @@
                 </div>
             </main>
             @*<footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Telif hakkı &copy; @DateTime.Now.Year</div>
-                            <div>
-                                <a href="#">Gizlilik Politikası</a>
-                                &middot;
-                                <a href="#">Şartlar &amp; Koşullar</a>
-                            </div>
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Telif hakkı &copy; @DateTime.Now.Year</div>
+                        <div>
+                            <a href="#">Gizlilik Politikası</a>
+                            &middot;
+                            <a href="#">Şartlar &amp; Koşullar</a>
                         </div>
                     </div>
-                </footer>*@
+                </div>
+            </footer>*@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>

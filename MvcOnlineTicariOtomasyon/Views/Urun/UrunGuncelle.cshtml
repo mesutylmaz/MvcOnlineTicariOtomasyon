@@ -28,11 +28,11 @@
         Ürün Markası
         @Html.TextBoxFor(z => z.UrunMarka, new { @class = "form-control" })<br />
         Ürün Stoğu
-        @Html.TextBoxFor(z => z.UrunStok, new { @class = "form-control" })<br />
+        @Html.TextBoxFor(z => z.UrunStok, new { @class = "form-control", @type = "number" })<br />
         Ürün Alış Fiyatı
-        @Html.TextBoxFor(z => z.UrunAlisFiyati, new { @class = "form-control" })<br />
+        @Html.TextBoxFor(z => z.UrunAlisFiyati, new { @class = "form-control", @type = "number" })<br />
         Ürün Satış Fiyatı
-        @Html.TextBoxFor(z => z.UrunSatisFiyati, new { @class = "form-control" })<br />
+        @Html.TextBoxFor(z => z.UrunSatisFiyati, new { @class = "form-control", @type = "number" })<br />
         Ürün Kategorisi
         @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
         <br />

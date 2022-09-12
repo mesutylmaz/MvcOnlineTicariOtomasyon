@@ -2927,7 +2927,6 @@
     <Content Include="Views\Error\PageError403.cshtml" />
     <Content Include="Views\Kategori\CascadingKategoriUrun.cshtml" />
     <Content Include="Views\Fatura\DinamikFaturalar.cshtml" />
-    <Content Include="Views\Personel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         //}
         public ActionResult KategorileriListele(int sayfa = 1)      //Listelemeyi 1. sayfa için yap
         {
-            var degerler = context.Kategoriler.ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 4 kategoriyi göster
+            var degerler = context.Kategoriler.Where(x => x.KategoriDurumu == true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 kategoriyi göster
             return View(degerler);
         }
 
@@ -30,9 +30,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        public ActionResult PasifKategorileriListele()
+        public ActionResult PasifKategorileriListele(int sayfa = 1)
         {
-            var degerler = context.Kategoriler.Where(x => x.KategoriDurumu == false).ToList();
+            var degerler = context.Kategoriler.Where(x => x.KategoriDurumu == false).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 kategoriyi göster
             return View(degerler);
         }
 

@@ -19,13 +19,13 @@
     @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
     <br />
     Adet
-    @Html.TextBoxFor(x => x.SatisHareketAdedi, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.SatisHareketAdedi, new { @class = "form-control", @type = "number" })
     <br />
     Fiyat
-    @Html.TextBoxFor(x => x.SatisHareketFiyati, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.SatisHareketFiyati, new { @class = "form-control", @type = "number" })
     <br />
     Toplam Tutar
-    @Html.TextBoxFor(x => x.SatisHareketToplamTutari, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.SatisHareketToplamTutari, new { @class = "form-control", @type = "number" })
     <br />
     <button class="btn btn-success">Kaydet</button>
     <a href="/Satis/SatisListesi" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Satış Listesi</a>

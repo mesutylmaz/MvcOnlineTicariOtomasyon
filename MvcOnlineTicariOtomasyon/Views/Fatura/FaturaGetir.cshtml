@@ -16,22 +16,25 @@
     @Html.TextBoxFor(z => z.FaturaSeriNo, new { @class = "form-control" })
     <br />
     Sıra No
-    @Html.TextBoxFor(z => z.FaturaSiraNo, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.FaturaSiraNo, new { @class = "form-control", @type = "number" })
     <br />
     Vergi Dairesi
     @Html.TextBoxFor(z => z.FaturaVergiDairesi, new { @class = "form-control" })
     <br />
     Tarih
-    @Html.TextBoxFor(z => z.FaturaTarih, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.FaturaTarih, new { @class = "form-control", @type = "date" })
     <br />
     Saat
-    @Html.TextBoxFor(z => z.FaturaSaat, new { @class = "form-control" })
+    @Html.TextBoxFor(z => z.FaturaSaat, new { @class = "form-control", @type = "Time" })
     <br />
     Teslim Eden
-    @Html.TextBoxFor(z => z.FaturaTeslimEden, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.FaturaTeslimEden, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
     <br />
     Teslim Alan
-    @Html.TextBoxFor(z => z.FaturaTeslimAlan, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.FaturaTeslimAlan, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
+    <br />
+    Toplam Tutar
+    @Html.TextBoxFor(z => z.ToplamTutar, new { @class = "form-control" })
     <br />
 </div>
     <br />

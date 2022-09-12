@@ -16,7 +16,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         // GET: Departman
         public ActionResult DepartmanListesi(int sayfa = 1)
         {
-            var degerler = context.Departmanlar.Where(x=>x.DepartmanDurumu==true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 4 kategoriyi göster;
+            var degerler = context.Departmanlar.Where(x=>x.DepartmanDurumu==true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 departmanı göster;
             return View(degerler);
         }
 
@@ -24,9 +24,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        public ActionResult PasifDepartmanListesi()
+        public ActionResult PasifDepartmanListesi(int sayfa = 1)
         {
-            var degerler = context.Departmanlar.Where(x => x.DepartmanDurumu == false).ToList();
+            var degerler = context.Departmanlar.Where(x => x.DepartmanDurumu == false).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 departmanı göster;
             return View(degerler);
         }
 
@@ -121,7 +121,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult DepartmanDetayi(int id)
         {
-            var degerler = context.Personeller.Where(x => x.Departmanid == id).ToList();
+            var degerler = context.Personeller.Where(x => x.Departmanid == id).ToList().ToPagedList(id, 10);      //ilgili sayfada sadece ilk 10 departman detayını göster;
             var departman = context.Departmanlar.Where(x => x.DepartmanID == id).Select(y => y.DepartmanAdi).FirstOrDefault();
             ViewBag.DepartmanAdi = departman;
             return View(degerler);
@@ -134,7 +134,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult DepartmanPersonelSatis(int id)
         {
-            var degerler = context.SatisHareketleri.Where(x => x.Personelid == id).ToList();
+            var degerler = context.SatisHareketleri.Where(x => x.Personelid == id).ToList().ToPagedList(id, 10);      //ilgili sayfada sadece ilk 10 satışı göster;
             var personel = context.Personeller.Where(x => x.PersonelID == id).Select(y => y.PersonelAdi + " " + y.PersonelSoyadi).FirstOrDefault();
             var departman = context.Personeller.Where(x => x.PersonelID == id).Select(y => y.Departman.DepartmanAdi).FirstOrDefault();
             ViewBag.DepartmanAdi = departman;

@@ -13,22 +13,26 @@
     @Html.TextBoxFor(x => x.FaturaSeriNo, new { @class = "form-control" })
     <br />
     @Html.Label("Fatura Sıra No")
-    @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control", @type = "number" })
     <br />
     @Html.Label("Vergi Dairesi")
     @Html.TextBoxFor(x => x.FaturaVergiDairesi, new { @class = "form-control" })
     <br />
     Tarih
-    @Html.TextBoxFor(x => x.FaturaTarih, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaTarih, new { @class = "form-control", @type = "Date" })
     <br />
     Saat
-    @Html.TextBoxFor(x => x.FaturaSaat, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaSaat, new { @class = "form-control", @type = "Time" })
     <br />
-    Teslim Eden
-    @Html.TextBoxFor(x => x.FaturaTeslimEden, new { @class = "form-control" })
+    <div class="form-group">
+        Teslim Eden
+        @Html.DropDownListFor(x => x.FaturaTeslimEden, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
+    </div>
     <br />
-    Teslim Alan
-    @Html.TextBoxFor(x => x.FaturaTeslimAlan, new { @class = "form-control" })
+    <div class="form-group">
+        Teslim Alan
+        @Html.DropDownListFor(x => x.FaturaTeslimAlan, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })   @*İlişkili tablo olduğundan bu şekilde yapıyoruz, istenen değeri atayabilmek için*@
+    </div>
     <br />
     <button class="btn btn-success">Kaydet</button>
     <a href="/Fatura/Index" class="btn btn-info" style="background-color:darkcyan; color:aliceblue;">Fatura Listesi</a>

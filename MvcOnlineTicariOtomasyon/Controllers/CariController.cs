@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
         // GET: Cari
-        public ActionResult CariListesi()
+        public ActionResult CariListesi(int sayfa = 1)      //Listelemeyi 1. sayfa için yap
         {
-            var degerler = context.Cariler.Where(x=>x.CariDurumu==true).ToList();
+            var degerler = context.Cariler.Where(x=>x.CariDurumu==true).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 cariyi göster
             return View(degerler);
         }
 
@@ -24,9 +25,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
 
 
-        public ActionResult PasifCariListesi()
+        public ActionResult PasifCariListesi(int sayfa = 1)      //Listelemeyi 1. sayfa için yap
         {
-            var degerler = context.Cariler.Where(x => x.CariDurumu == false).ToList();
+            var degerler = context.Cariler.Where(x => x.CariDurumu == false).ToList().ToPagedList(sayfa, 10);      //ilgili sayfada sadece ilk 10 cariyi göster
             return View(degerler);
         }
 
@@ -127,7 +128,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult CariSatisGecmisi(int id)
         {
-            var degerler = context.SatisHareketleri.Where(x => x.Cariid == id).ToList();
+            var degerler = context.SatisHareketleri.Where(x => x.Cariid == id).ToList().ToPagedList(id, 10);      //ilgili sayfada sadece ilk 10 satışı göster
             var cr = context.Cariler.Where(x => x.CariID == id).Select(y => y.CariAdi + " " + y.CariSoyadi).FirstOrDefault();
             ViewBag.Cari = cr;
             return View(degerler);

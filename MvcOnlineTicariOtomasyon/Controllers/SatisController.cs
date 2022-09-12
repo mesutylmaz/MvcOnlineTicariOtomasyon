@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         // GET: Satis
         public ActionResult SatisListesi()
         {
-            var degerler = context.SatisHareketleri.ToList();
+            var degerler = context.SatisHareketleri.ToList();      
             return View(degerler);
         }
 

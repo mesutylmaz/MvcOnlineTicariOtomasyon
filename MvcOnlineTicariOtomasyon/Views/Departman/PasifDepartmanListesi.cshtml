@@ -1,5 +1,37 @@
-﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Departman>
+﻿@*@using MvcOnlineTicariOtomasyon.Models.Siniflar
+    @model List<Departman>
+    @{
+        ViewBag.Title = "PasifDepartmanListesi";
+        Layout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered" style="margin-top:20px;">
+        <tr>
+            <th>#</th>
+            <th>Departman Adı</th>
+            <th>İşlemler</th>
+        </tr>
+        @{int sayac = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@{sayac += 1;} @sayac</td>
+                <td>@item.DepartmanAdi</td>
+                <td>
+                    <a href="/Departman/DepartmaniAktifEt/@item.DepartmanID" class="btn" style="background-color:mediumpurple; color:aliceblue">Aktif Et</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Departman/DepartmanListesi" class="btn btn-info" style="background-color:darkcyan; color: aliceblue;">Aktif Departman Listesi</a>*@
+
+
+
+
+@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Departman>
 @{
     ViewBag.Title = "PasifDepartmanListesi";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -23,4 +55,14 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("PasifDepartmanListesi", new { sayfa }),
+new PagedListRenderOptions@*Sayfa değerine her tıklandığında, yeni bir sayfa oluşturarak bana Cari Listesini aç*@
+{
+LiElementClasses = new List<string>
+{
+"page-link"         //Sayfanın linklerini ekle
+}
+})
+
 <a href="/Departman/DepartmanListesi" class="btn btn-info" style="background-color:darkcyan; color: aliceblue;">Aktif Departman Listesi</a>
